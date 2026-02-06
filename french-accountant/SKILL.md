@@ -81,8 +81,12 @@ Légende :
 
 Avant toute analyse, obtenir et valider:
 
-```
-SIREN/SIRET → Rechercher sur https://annuaire-entreprises.data.gouv.fr/
+```bash
+# Via script (si disponible)
+python scripts/fetch_company.py <SIREN>
+
+# Ou manuellement
+https://annuaire-entreprises.data.gouv.fr/
 ```
 
 Informations à confirmer:
@@ -148,6 +152,13 @@ Consulter selon le besoin:
 | [references/legal-forms.md](references/legal-forms.md) | Spécificités par forme juridique |
 | [references/calendar.md](references/calendar.md) | Échéances fiscales et sociales |
 | [references/closing.md](references/closing.md) | Clôture: amortissements, provisions, cut-offs |
+| [references/regional.md](references/regional.md) | DOM-TOM, Alsace-Moselle, Corse |
+
+## Scripts
+
+| Script | Usage |
+|--------|-------|
+| `scripts/fetch_company.py <SIREN>` | Recherche info entreprise via API |
 
 ## Formats de Sortie
 

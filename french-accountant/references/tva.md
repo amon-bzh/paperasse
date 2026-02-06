@@ -1,6 +1,6 @@
 # TVA - Taxe sur la Valeur Ajoutée
 
-## Taux de TVA en France (2024)
+## Taux de TVA en France (2026)
 
 | Taux | Application |
 |------|-------------|
@@ -22,9 +22,9 @@
 
 ### 1. Franchise en Base
 
-**Seuils (2024):**
-- Services: 36 800 € (tolérance 39 100 €)
-- Ventes de marchandises: 91 900 € (tolérance 101 000 €)
+**Seuils (2026):**
+- Services: 37 500 € (tolérance 41 250 €)
+- Ventes de marchandises: 85 000 € (tolérance 93 500 €)
 - Activités mixtes: seuils cumulatifs
 
 **Caractéristiques:**
@@ -39,9 +39,9 @@
 
 ### 2. Régime Réel Simplifié
 
-**Seuils (2024):**
-- Services: 36 800 € à 254 000 €
-- Ventes: 91 900 € à 840 000 €
+**Seuils (2026):**
+- Services: 37 500 € à 254 000 €
+- Ventes: 85 000 € à 840 000 €
 
 **Obligations:**
 - Déclaration annuelle CA12 (avant le 2ème jour ouvré suivant le 1er mai)
@@ -290,7 +290,7 @@ Achat intra-UE ou import sans autoliquidation = TVA non déductible.
 
 TVA non déductible sur:
 - Véhicules de tourisme (sauf véhicules utilitaires)
-- Carburant essence (déductible à 80% en 2024)
+- Carburant essence (déductible à 80%)
 - Gazole (déductible à 100%)
 - Cadeaux > 73 € TTC par bénéficiaire/an
 - Dépenses de logement pour dirigeants

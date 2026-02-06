@@ -2,12 +2,14 @@
 
 ## Impôt sur les Sociétés (IS)
 
-### Taux d'IS (2024)
+### Taux d'IS (2026)
 
 | Tranche de bénéfice | Taux |
 |---------------------|------|
 | 0 - 42 500 € | 15% (PME) |
 | Au-delà de 42 500 € | 25% |
+
+> Note: Le PLF 2026 envisage de relever le plafond du taux réduit à 100 000 €. Vérifier l'état de la loi de finances.
 
 **Conditions pour le taux réduit PME (15%):**
 - CA HT < 10 M€
@@ -103,15 +105,17 @@ Résultat comptable
 - Comptabilité recettes-dépenses
 - Déclaration 2035
 
-### Barème IR 2024 (revenus 2023)
+### Barème IR 2026 (revenus 2025)
 
 | Tranche | Taux |
 |---------|------|
-| 0 - 11 294 € | 0% |
-| 11 294 - 28 797 € | 11% |
-| 28 797 - 82 341 € | 30% |
-| 82 341 - 177 106 € | 41% |
-| > 177 106 € | 45% |
+| 0 - 11 600 € | 0% |
+| 11 601 - 29 579 € | 11% |
+| 29 580 - 84 577 € | 30% |
+| 84 578 - 181 917 € | 41% |
+| > 181 917 € | 45% |
+
+Revalorisation de +0,9% par rapport à 2025.
 
 ---
 
@@ -142,7 +146,9 @@ Résultat comptable
 
 **Seuil de paiement:** CA > 500 000 € et VA > 0
 
-**Taux 2024:** 0,28% (suppression progressive)
+**Taux 2026:** 0,28% max (suppression reportée à 2030)
+
+> Note: La baisse prévue dans le PLF 2026 a été abandonnée. Taux maintenu à 0,28%.
 
 **Calcul de la valeur ajoutée:**
 ```
@@ -191,12 +197,14 @@ Résultat comptable
 
 **Assujettissement:** Employeurs non soumis à TVA ou soumis partiellement.
 
-**Taux 2024:**
+**Taux 2026:**
 | Tranche salaire annuel | Taux |
 |------------------------|------|
-| 0 - 8 985 € | 4,25% |
-| 8 985 - 17 936 € | 8,50% |
-| > 17 936 € | 13,60% |
+| 0 - 9 071 € | 4,25% |
+| 9 071 - 18 111 € | 8,50% |
+| > 18 111 € | 13,60% |
+
+> Tranches revalorisées selon l'inflation.
 
 **Déclaration:** 2502 annuelle
 
