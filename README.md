@@ -6,94 +6,73 @@
 
 ---
 
-## 🤖 C'est quoi ce bordel ?
+## 🤖 Qu'est-ce que c'est ?
 
-Paperasse est une collection de skills pour [Claude Code](https://claude.ai/claude-code) qui transforment votre IA préférée en armée de cols blancs infatigables.
+Paperasse est une collection de skills pour [Claude Code](https://claude.ai/claude-code) spécialisés dans la comptabilité, la fiscalité et l'audit des entreprises françaises.
 
-Vous savez, ces métiers où on passe 80% du temps à chercher le bon formulaire CERFA et 20% à se demander si on a bien coché la case 7DB ?
+Chaque skill transforme Claude en copilote expert d'un métier de la paperasse : il connaît les textes (CGI, BOFiP, NEP), les formulaires, les échéances, et surtout il ne se trompe pas de case dans la liasse fiscale.
 
-**On a automatisé ça.**
+Les skills fonctionnent aussi avec Cursor, Windsurf, Cline, Aider, et tout outil capable de lire du Markdown.
 
 ---
 
 ## 📦 Skills Disponibles
 
-| Skill | Rôle | Ce qu'il fait |
-|-------|------|---------------|
-| [`comptable`](#-comptable--expert-comptable-ia) | Expert-Comptable | Écritures, PCG, TVA, IS/IR, clôture, échéances fiscales |
-| [`controleur-fiscal`](#-controleur-fiscal--contrôle-fiscal-ia) | Inspecteur des Finances Publiques | Simulation de contrôle fiscal DGFIP, chefs de redressement, FEC |
-| [`commissaire-aux-comptes`](#-commissaire-aux-comptes--commissaire-aux-comptes-ia) | Commissaire aux Comptes | Audit NEP, validation bilan/CR/liasse, opinion sur les comptes |
+| Skill | Rôle | Fonctionnalités |
+|-------|------|-----------------|
+| [`comptable`](#-comptable--expert-comptable) | Expert-Comptable | Écritures, PCG, TVA, IS/IR, clôture, échéances fiscales |
+| [`controleur-fiscal`](#-controleur-fiscal--préparation-au-contrôle-fiscal) | Contrôleur Fiscal | Simulation de contrôle DGFIP, analyse FEC, chefs de redressement |
+| [`commissaire-aux-comptes`](#%EF%B8%8F-commissaire-aux-comptes--audit-des-comptes-annuels) | Commissaire aux Comptes | Audit NEP en 7 phases, validation bilan/CR/liasse, opinion |
 
 ---
 
-### 🧮 `comptable` — Expert-Comptable IA
+### 🧮 `comptable` — Expert-Comptable
 
-**Remplace :** L'expert-comptable qui vous facture 150€ pour vous expliquer que non, votre abonnement Netflix n'est pas déductible.
+Copilote comptable et fiscal pour les entreprises françaises (SASU, EURL, SAS, SARL, EI).
 
-**Fait :**
-- Écritures comptables (débits à gauche, crédits à droite, comme papa nous l'a appris)
-- Classification PCG (parce que retenir 800 numéros de compte c'est pour les faibles)
-- Déclarations TVA (CA3, CA12, et autres formulaires aux noms sexy)
-- Calcul IS/IR (spoiler: l'État gagne toujours)
-- Clôture annuelle (amortissements, provisions, et autres joyeusetés)
-- Gestion des échéances (pour ne plus recevoir de lettres recommandées)
+**Fonctionnalités :**
+- Écritures comptables avec les bons comptes PCG
+- Classification automatique dans le Plan Comptable Général (800+ comptes)
+- Déclarations TVA (CA3, CA12, régimes, intra-UE, autoliquidation)
+- Calcul IS et IR (taux réduit PME, prorata exercice court)
+- Clôture annuelle (amortissements, provisions, CCA, cut-offs)
+- Rappel des échéances fiscales via le calendrier officiel impots.gouv.fr
+- Recherche d'entreprise par SIREN via l'API Annuaire des Entreprises
 
-**Ne fait pas :**
-- Les apéros du vendredi
-- Signer la liasse fiscale (il vous faut encore un vrai expert-comptable pour ça, désolé)
-- Vous consoler quand vous voyez le montant de vos charges sociales
+Il ne signe pas la liasse fiscale. Pour ça, il vous faut encore un vrai expert-comptable.
 
 ---
 
-### 🔍 `controleur-fiscal` — Contrôle Fiscal IA
+### 🔍 `controleur-fiscal` — Préparation au Contrôle Fiscal
 
-**Remplace :** L'angoisse de recevoir un avis de vérification sans avoir la moindre idée de ce qui va se passer.
+Simule un contrôle fiscal tel que mené par un vérificateur de la DGFIP. L'objectif : **anticiper les risques de redressement avant que le vrai contrôleur ne les trouve**.
 
-**Fait :**
-- Simulation complète d'un contrôle fiscal DGFIP (8 axes de vérification)
-- Analyse du FEC (conformité, équilibre, numérotation)
-- Vérification de la déductibilité de chaque catégorie de charges
-- Contrôle du compte courant d'associé 455 (la zone de tous les dangers)
-- Rédaction de chefs de redressement avec montants et pénalités
+**Fonctionnalités :**
+- Simulation complète sur 8 axes de vérification (FEC, IS, charges, CCA 455, revenus, TVA, immobilisations, international)
+- Analyse du FEC : conformité format, équilibre, numérotation séquentielle, cohérence PCG
+- Vérification de la déductibilité de chaque catégorie de charges (art. 39 CGI)
+- Contrôle du compte courant d'associé 455 (charges pré-constitution, bureau domicile, taux conversion)
+- Rédaction de chefs de redressement avec montants, pénalités et base légale
 - Évaluation du risque par poste (élevé / moyen / faible)
+- Synthèse récapitulative avec total des droits rappelés
 
-**Ne fait pas :**
-- Débarquer chez vous un mardi matin à 8h avec un avis de vérification
-- Vous regarder avec un air suspicieux pendant que vous cherchez vos factures
-- Trouver que c'est normal de payer 40% de majoration
+Conçu pour les dirigeants et comptables qui veulent dormir tranquilles avant un contrôle. Et si un vrai inspecteur des finances publiques veut l'utiliser pour préparer ses vérifications, on est flattés. On espère juste que ce n'est pas les nôtres.
 
 ---
 
-### 🏛️ `commissaire-aux-comptes` — Commissaire aux Comptes IA
+### 🏛️ `commissaire-aux-comptes` — Audit des Comptes Annuels
 
-**Remplace :** L'audit à 5 000€ qui vous dit que vos comptes sont "globalement corrects, sous réserve de quelques observations mineures".
+Reproduit la démarche d'un commissaire aux comptes (CAC) pour valider les comptes annuels selon les normes NEP de la CNCC.
 
-**Fait :**
-- Audit complet en 7 phases selon les normes NEP (CNCC)
-- Contrôle du FEC, bilan, compte de résultat, balance, grand livre
-- Vérification de la liasse fiscale (2033-A à 2033-E, 2572-SD)
-- Réconciliation bancaire et contrôle de coupure
-- Calcul du seuil de signification et matérialité
-- Émission d'une opinion (sans réserve, avec réserve, refus)
+**Fonctionnalités :**
+- Audit complet en 7 phases (planification, FEC, bilan, compte de résultat, balance/grand livre, liasse fiscale, contrôles transversaux)
+- Contrôle de conformité du FEC (18 colonnes, équilibre, numérotation)
+- Vérification croisée bilan / compte de résultat / balance / liasse (2033-A à 2033-E, 2572-SD)
+- Réconciliation bancaire et contrôle de coupure (cut-off)
+- Calcul du seuil de signification (5% résultat courant ou 1-2% CA)
+- Émission d'une opinion motivée (sans réserve, avec réserve, refus, impossibilité)
 
-**Ne fait pas :**
-- Facturer au temps passé plus cher qu'un avocat
-- Vous envoyer une "lettre de recommandations" de 47 pages
-- Tourner autour du pot pendant 3 mois avant de vous donner son avis
-
----
-
-## 🪦 Métiers Menacés
-
-| Métier | Niveau de Menace | Commentaire |
-|--------|------------------|-------------|
-| Expert-comptable junior | ☠️☠️☠️☠️☠️ | RIP. Apprends à coder. |
-| Aide-comptable | ☠️☠️☠️☠️☠️ | F in the chat |
-| Auditeur junior | ☠️☠️☠️☠️ | Les checklists c'est le premier truc qu'on automatise |
-| Expert-comptable senior | ☠️☠️☠️ | Encore utile pour signer et rassurer mémé |
-| Commissaire aux comptes | ☠️☠️ | Le tampon officiel reste humain (pour l'instant) |
-| Contrôleur fiscal | ☠️ | Malheureusement toujours là |
-| Stagiaire qui fait les photocopies | ☠️☠️☠️☠️ | Personne ne faisait de photocopies de toute façon |
+Utile avant l'AG d'approbation des comptes, même sans obligation légale de CAC.
 
 ---
 
@@ -110,11 +89,7 @@ for skill in comptable controleur-fiscal commissaire-aux-comptes; do
   cp -r $skill ~/.claude/skills/
 done
 
-# C'est tout. Oui, vraiment.
-# Pas de npm install avec 847 dépendances.
-# Pas de Docker.
-# Pas de Kubernetes.
-# Juste des fichiers markdown.
+# C'est tout. Pas de dépendances. Juste des fichiers Markdown.
 ```
 
 ### Claude Cowork
@@ -146,7 +121,7 @@ Pour les agents qui bossent dans [Claude Cowork](https://cowork.anthropic.com) :
 
 ### Autres Agents (Cursor, Windsurf, Cline, etc.)
 
-Ces skills sont juste du Markdown. Ils marchent partout où un LLM peut lire des fichiers :
+Ces skills sont du Markdown. Ils marchent partout où un LLM peut lire des fichiers :
 
 | Outil | Installation |
 |-------|--------------|
@@ -172,14 +147,12 @@ cp -r comptable controleur-fiscal commissaire-aux-comptes .ai/skills/
 
 ## 🎯 Utilisation
 
-Lancez Claude Code et posez vos questions en français (ou en anglais si vous êtes un traître) :
+Lancez Claude Code et posez vos questions en français :
 
 ```
 > Comment je comptabilise un achat chez AWS ?
 
 > C'est quoi le taux de TVA sur les formations en ligne ?
-
-> J'ai oublié de payer ma CFE, je vais en prison ?
 
 > Simule un contrôle fiscal sur mes comptes 2025
 
@@ -188,26 +161,20 @@ Lancez Claude Code et posez vos questions en français (ou en anglais si vous ê
 > Mon compte courant 455 est à 15 000€, c'est risqué ?
 ```
 
-Les skills vont d'abord chercher votre entreprise sur l'annuaire des entreprises (oui, ils font leurs devoirs) puis vous répondre avec :
-- Les faits (ce qu'on sait)
-- Les hypothèses (ce qu'on suppose)
-- L'analyse (ce qu'il faut faire)
-- Les risques (ce qui peut merder)
-- Les actions (votre todo list)
+Les skills commencent par chercher votre entreprise sur l'annuaire des entreprises (SIREN, forme juridique, régime), puis structurent leur réponse :
+- **Faits** : ce qui est certain et documenté
+- **Hypothèses** : ce qui est supposé, à confirmer
+- **Analyse** : traitement comptable et fiscal
+- **Risques** : points d'attention
+- **Actions** : tâches concrètes
 
 ---
 
-## 🗓️ Fonctionnalités Anti-Conneries
+## 🛡️ Garde-fous
 
 ### Vérification des échéances
 
-À chaque conversation, l'agent consulte le **vrai** calendrier fiscal :
-
-```
-https://www.impots.gouv.fr/professionnel/calendrier-fiscal
-```
-
-Et vous balance un rappel si vous êtes sur le point de rater une deadline :
+À chaque conversation, le skill comptable consulte le calendrier fiscal officiel et affiche les prochaines échéances :
 
 ```
 ⏰ PROCHAINES ÉCHÉANCES
@@ -216,40 +183,19 @@ Et vous balance un rappel si vous êtes sur le point de rater une deadline :
 🟡 25/03 - TVA février CA3 (dans 15 jours)
 ```
 
-Parce que recevoir une majoration de 10% pour retard, c'est con.
+### Fraîcheur des données
 
-### Fraîcheur des données (`last_updated`)
+Chaque skill a une date `last_updated` dans son frontmatter. Si le skill a plus de 6 mois, l'agent affiche un avertissement et va vérifier les chiffres en ligne (seuils TVA, taux IS/IR, plafonds micro-entreprise, cotisations sociales) avant de répondre.
 
-Chaque skill a une date de dernière mise à jour dans son frontmatter :
-
-```yaml
-metadata:
-  last_updated: 2026-03-23
-```
-
-**Si le skill a plus de 6 mois**, l'agent affiche :
-
-```
-⚠️ SKILL POTENTIELLEMENT OBSOLÈTE
-Dernière MAJ: 2026-03-23 — Vérification requise
-```
-
-Et il va **vérifier en ligne** avant de vous balancer un chiffre :
-- Seuils TVA
-- Taux IS/IR
-- Plafonds micro-entreprise
-- Cotisations sociales
-- etc.
-
-Parce que le législateur français change les règles plus souvent que vous changez de mot de passe. Et contrairement à votre mot de passe, là ça peut vraiment vous coûter cher.
+Le législateur français change les règles plus souvent que vous changez de mot de passe. Contrairement à votre mot de passe, ça peut coûter cher.
 
 ### Données open source (`data/`)
 
-Le repo embarque des jeux de données open source pour que les skills ne travaillent pas à l'aveugle :
+Le repo embarque des jeux de données open source :
 
 | Fichier | Contenu | Source |
 |---------|---------|--------|
-| `data/pcg_YYYY.json` | Plan Comptable Général complet (comptes et libellés) | [Arrhes/PCG](https://github.com/arrhes/PCG) via data.gouv.fr |
+| `data/pcg_YYYY.json` | Plan Comptable Général complet (800+ comptes et libellés) | [Arrhes/PCG](https://github.com/arrhes/PCG) via data.gouv.fr |
 | `data/nomenclature-liasse-fiscale.csv` | Clés/libellés des cases de la liasse fiscale | [data.gouv.fr](https://www.data.gouv.fr/datasets/nomenclature-fiscale-du-compte-de-resultat/) |
 
 Les skills utilisent aussi des APIs publiques (BOFiP, Sirene) sans stocker de données localement. Tout est décrit dans `data/sources.json`.
@@ -257,14 +203,9 @@ Les skills utilisent aussi des APIs publiques (BOFiP, Sirene) sans stocker de do
 **Vérifier la fraîcheur et mettre à jour :**
 
 ```bash
-# Vérifier sans rien télécharger
-python3 scripts/update_data.py --check
-
-# Vérifier et mettre à jour si nécessaire
-python3 scripts/update_data.py
-
-# Forcer le re-téléchargement de tout
-python3 scripts/update_data.py --force
+python3 scripts/update_data.py --check   # Vérifier sans rien télécharger
+python3 scripts/update_data.py           # Vérifier et mettre à jour
+python3 scripts/update_data.py --force   # Forcer le re-téléchargement
 ```
 
 Le script vérifie :
@@ -275,8 +216,6 @@ Le script vérifie :
 ---
 
 ## 🗺️ Roadmap
-
-Skills à venir pour compléter l'armée bureaucratique :
 
 | Skill | Description | Statut |
 |-------|-------------|--------|
@@ -293,11 +232,9 @@ Skills à venir pour compléter l'armée bureaucratique :
 
 *Ce projet est fourni "tel quel", sans garantie d'aucune sorte.*
 
-**Ces skills ne remplacent pas un vrai expert-comptable inscrit à l'Ordre, ni un commissaire aux comptes certifié.**
+**Ces skills ne remplacent pas un expert-comptable inscrit à l'Ordre, ni un commissaire aux comptes certifié.** Ils sont conçus comme outils d'aide à la décision et de préparation.
 
-Si vous utilisez ces outils pour faire votre comptabilité et que le fisc débarque, ne venez pas pleurer. On vous avait prévenus. En tout petit. Dans un README. Que vous n'avez probablement pas lu.
-
-Pour les trucs sérieux (litiges, contrôles fiscaux, montages à la con), consultez un vrai professionnel qui a une assurance responsabilité civile professionnelle et un numéro SIRET.
+Pour les situations complexes (litiges, montages fiscaux, contrôles en cours), consultez un professionnel avec une assurance RC Pro et un numéro SIRET.
 
 ---
 
@@ -310,7 +247,6 @@ Vous avez un métier de la paperasse que vous aimeriez voir automatisé ?
 3. Incluez un `SKILL.md` avec frontmatter (name, description, last_updated)
 4. Ajoutez des `references/` pour les textes de loi et barèmes
 5. Faites une PR
-6. Attendez qu'on review (ou pas, on est occupés à automatiser nos propres jobs)
 
 ### Convention de nommage
 
@@ -326,7 +262,7 @@ Noms de dossiers en français, en minuscules, avec tirets :
 
 ## 📜 Licence
 
-MIT — Faites-en ce que vous voulez. Même vendre des formations à 2000€ "Comment utiliser l'IA pour la comptabilité". On ne jugera pas. Enfin si, un peu.
+MIT
 
 ---
 
@@ -334,10 +270,9 @@ MIT — Faites-en ce que vous voulez. Même vendre des formations à 2000€ "Co
 
 - **L'administration française** — Pour avoir créé un système si complexe qu'il nécessite une IA pour le comprendre
 - **Le Plan Comptable Général** — 800 comptes, vraiment ?
-- **Les formulaires CERFA** — Une source inépuisable d'inspiration
 - **Le Code Général des Impôts** — 2 000 articles, et ils en rajoutent chaque année
 - **La CNCC** — Pour les NEP, ces documents que personne ne lit mais que tout le monde cite
-- **Claude** — Pour faire le travail pendant qu'on scroll sur Twitter
+- **data.gouv.fr** — Pour les données ouvertes qui alimentent les skills
 
 ---
 
@@ -349,4 +284,4 @@ MIT — Faites-en ce que vous voulez. Même vendre des formations à 2000€ "Co
 
 ---
 
-**Made with 🥐 and existential dread in France**
+**Made with 🥐 in France**
