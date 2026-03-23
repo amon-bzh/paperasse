@@ -503,4 +503,6 @@ MIT
 
 ---
 
-**Made with croissants in France**
+<p align="center">
+  Fait avec des 🥐 et beaucoup de ☕ quelque part en France
+</p>
