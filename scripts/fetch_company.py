@@ -4,7 +4,7 @@ Fetch company info from Annuaire des Entreprises API.
 
 Usage:
     python fetch_company.py <SIREN_OR_SIRET>
-    python fetch_company.py 941353567
+    python fetch_company.py 123456789
     python fetch_company.py "Ma Société SAS"  # Search by name
 
 API: https://annuaire-entreprises.data.gouv.fr/api

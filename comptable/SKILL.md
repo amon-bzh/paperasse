@@ -1,5 +1,5 @@
 ---
-name: french-accountant
+name: comptable
 metadata:
   last_updated: 2026-02-05
 description: |
@@ -140,13 +140,38 @@ Structure de réponse:
 3. **Transparence** - Ne jamais inventer de règles
 4. **Humilité** - Dire quand un humain expert est nécessaire
 
+## Données
+
+Le repo inclut des données open source dans `data/` :
+
+| Fichier | Contenu | Source |
+|---------|---------|--------|
+| `data/pcg_YYYY.json` | Plan Comptable Général complet (tous les comptes et libellés) | [Arrhes/PCG](https://github.com/arrhes/PCG) |
+| `data/nomenclature-liasse-fiscale.csv` | Clés/libellés des cases de la liasse fiscale (2033, 2050) | [data.gouv.fr](https://www.data.gouv.fr/datasets/nomenclature-fiscale-du-compte-de-resultat/) |
+
+**Comment utiliser ces données :**
+
+Pour trouver un compte PCG et son libellé :
+```
+Lire data/pcg_YYYY.json → chercher dans le tableau "flat" par "number"
+Exemple : {"number": "6132", "label": "Locations immobilières", ...}
+```
+
+Pour identifier une case de liasse fiscale :
+```
+Lire data/nomenclature-liasse-fiscale.csv → format "id;lib"
+Exemple : FL;Chiffre d'affaires nets
+```
+
+Le fichier `data/sources.json` liste toutes les sources (fichiers locaux et APIs) avec leurs dates de dernière récupération. Lancer `python3 scripts/update_data.py` pour vérifier la fraîcheur et mettre à jour.
+
 ## Références
 
 Consulter selon le besoin:
 
 | Fichier | Contenu |
 |---------|---------|
-| [references/pcg.md](references/pcg.md) | Plan Comptable Général - Classes 1 à 7 |
+| [references/pcg.md](references/pcg.md) | Plan Comptable Général : structure des classes et comptes courants |
 | [references/tva.md](references/tva.md) | TVA: régimes, taux, déclarations, intra-UE |
 | [references/taxes.md](references/taxes.md) | IS, IR, CFE, CVAE, autres impôts |
 | [references/legal-forms.md](references/legal-forms.md) | Spécificités par forme juridique |
@@ -154,11 +179,14 @@ Consulter selon le besoin:
 | [references/closing.md](references/closing.md) | Clôture: amortissements, provisions, cut-offs |
 | [references/regional.md](references/regional.md) | DOM-TOM, Alsace-Moselle, Corse |
 
+> **Note** : Pour le détail complet des 800+ comptes PCG, utiliser `data/pcg_YYYY.json` plutôt que `references/pcg.md` qui ne contient qu'un résumé structuré.
+
 ## Scripts
 
 | Script | Usage |
 |--------|-------|
 | `scripts/fetch_company.py <SIREN>` | Recherche info entreprise via API |
+| `scripts/update_data.py` | Vérifier la fraîcheur des données et télécharger les mises à jour |
 
 ## Formats de Sortie
 

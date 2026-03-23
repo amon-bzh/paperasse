@@ -1,0 +1,53 @@
+{
+  "sources": [
+    {
+      "id": "pcg",
+      "name": "Plan Comptable Général",
+      "file": "pcg_2026.json",
+      "source_url": "https://raw.githubusercontent.com/arrhes/PCG/main/versions/{year}/pcg_{year}.json",
+      "source_repo": "https://github.com/arrhes/PCG",
+      "license": "Open License v2.0",
+      "provider": "Arrhes (via data.gouv.fr)",
+      "update_frequency": "annual",
+      "last_fetched": "2026-03-23",
+      "version": "2026",
+      "description": "Structure harmonisée du PCG en JSON (tous les comptes et libellés)"
+    },
+    {
+      "id": "nomenclature-liasse",
+      "name": "Nomenclature fiscale du compte de résultat",
+      "file": "nomenclature-liasse-fiscale.csv",
+      "source_url": "https://static.data.gouv.fr/resources/nomenclature-fiscale-du-compte-de-resultat/20231226-123005/nomenc-compte-resultat.csv",
+      "source_page": "https://www.data.gouv.fr/datasets/nomenclature-fiscale-du-compte-de-resultat/",
+      "license": "Open License v2.0",
+      "provider": "icem7 (via data.gouv.fr)",
+      "update_frequency": "unknown",
+      "last_fetched": "2026-03-23",
+      "description": "Paires clé/libellé des cases de la liasse fiscale (2033, 2050, etc.)"
+    },
+    {
+      "id": "bofip",
+      "name": "BOFiP Impôts - publications en vigueur",
+      "file": null,
+      "api_csv": "https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/bofip-vigueur/exports/csv?use_labels=true",
+      "api_json": "https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/bofip-vigueur/exports/json",
+      "source_page": "https://www.data.gouv.fr/datasets/bofip-impots-publications-en-vigueur/",
+      "license": "Etalab Open License v2.0",
+      "provider": "DGFIP",
+      "update_frequency": "weekly",
+      "description": "Doctrine fiscale officielle. Trop volumineux pour le repo, mais les URLs permettent de vérifier qu'une référence BOI est toujours en vigueur."
+    },
+    {
+      "id": "sirene",
+      "name": "Base Sirene des entreprises",
+      "file": null,
+      "api_url": "https://api.insee.fr/entreprises/sirene/V3.11/",
+      "alt_api": "https://recherche-entreprises.api.gouv.fr/search?q=test",
+      "source_page": "https://www.data.gouv.fr/datasets/base-sirene-des-entreprises-et-de-leurs-etablissements-siren-siret/",
+      "license": "Open License v2.0",
+      "provider": "INSEE",
+      "update_frequency": "monthly",
+      "description": "Utilisé via API par fetch_company.py. Pas de fichier local (base trop volumineuse)."
+    }
+  ]
+}
