@@ -2,6 +2,8 @@
 name: commissaire-aux-comptes
 metadata:
   last_updated: 2026-03-23
+includes:
+  - data/**
 description: |
   Audit des comptes annuels d'une entreprise française selon la démarche d'un commissaire aux comptes (CAC).
   Réalise les diligences NEP, vérifie la cohérence des états financiers, contrôle le FEC, valide la liasse fiscale et émet une opinion.

@@ -2,6 +2,10 @@
 name: comptable
 metadata:
   last_updated: 2026-02-05
+includes:
+  - data/**
+  - scripts/fetch_company.py
+  - scripts/update_data.py
 description: |
   Expert-comptable IA pour les entreprises françaises. Co-pilote comptable et fiscal compliance-first.
 

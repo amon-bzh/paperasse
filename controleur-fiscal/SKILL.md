@@ -2,6 +2,8 @@
 name: controleur-fiscal
 metadata:
   last_updated: 2026-03-23
+includes:
+  - data/**
 description: |
   Simule un contrôle fiscal DGFIP sur les comptes d'une entreprise française (SASU, EURL, SAS, SARL).
   Analyse le FEC, la liasse fiscale, les charges déduites, le compte courant d'associé, la TVA, l'IS
