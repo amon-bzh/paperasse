@@ -27,7 +27,7 @@ description: |
   - Conseiller sur l'optimisation patrimoniale et la transmission
   - Interroger les données foncières (DVF, cadastre, risques, urbanisme)
 
-  Triggers: notaire, frais de notaire, acte de vente, compromis, succession, donation, héritage, testament, PACS, contrat de mariage, SCI, plus-value immobilière, droits de mutation, DMTO, usufruit, nue-propriété, partage successoral, réserve héréditaire, viager, donation-partage, diagnostics immobilier, droit de préemption, notary, French real estate
+  Triggers: notaire, frais de notaire, acte de vente, compromis, succession, donation, héritage, testament, PACS, contrat de mariage, SCI, plus-value immobilière, droits de mutation, DMTO, usufruit, nue-propriété, partage successoral, réserve héréditaire, viager, donation-partage, diagnostics immobilier, droit de préemption, acte notarié, droit immobilier
 ---
 
 # Notaire IA
@@ -92,7 +92,7 @@ Déterminer le domaine et le workflow applicable :
 | Vente immobilière | [references/immobilier.md](references/immobilier.md) | [references/workflow-vente.md](references/workflow-vente.md) |
 | Plus-value immobilière | [references/plus-value.md](references/plus-value.md) | — |
 | Succession | [references/succession.md](references/succession.md) | [references/workflow-succession.md](references/workflow-succession.md) |
-| Donation | [references/donation.md](references/donation.md) | — |
+| Donation | [references/donation.md](references/donation.md) | [references/workflow-donation.md](references/workflow-donation.md) |
 | Famille (mariage, PACS, divorce) | [references/famille.md](references/famille.md) | — |
 | Sociétés (SCI, apports) | [references/societes.md](references/societes.md) | — |
 | Tarifs et émoluments | [references/tarifs-emoluments.md](references/tarifs-emoluments.md) | — |
@@ -264,6 +264,8 @@ Voir [references/immobilier.md](references/immobilier.md) et [references/plus-va
 **Documents générables (templates disponibles) :**
 - [templates/declaration-succession-checklist.md](templates/declaration-succession-checklist.md) — Checklist de déclaration de succession
 - [templates/donation-entre-epoux.md](templates/donation-entre-epoux.md) — Donation au dernier vivant
+- [templates/acte-notoriete.md](templates/acte-notoriete.md) — Acte de notoriété
+- [templates/testament-olographe.md](templates/testament-olographe.md) — Testament olographe (modèle de rédaction)
 
 **Workflow complet** : [references/workflow-succession.md](references/workflow-succession.md)
 
@@ -279,6 +281,12 @@ Voir [references/succession.md](references/succession.md) pour les barèmes et l
 - Pacte Dutreil (transmission d'entreprise)
 - Don manuel et don familial de sommes d'argent
 
+**Documents générables (templates disponibles) :**
+- [templates/donation-simple.md](templates/donation-simple.md) — Donation simple (entre vifs)
+- [templates/donation-entre-epoux.md](templates/donation-entre-epoux.md) — Donation au dernier vivant
+
+**Workflow complet** : [references/workflow-donation.md](references/workflow-donation.md)
+
 Voir [references/donation.md](references/donation.md) pour les barèmes et le détail.
 
 ### Droit de la Famille
@@ -290,6 +298,11 @@ Voir [references/donation.md](references/donation.md) pour les barèmes et le d�
 - Mandat de protection future
 - Testament (3 formes : olographe, authentique, mystique)
 - Rédaction de clauses testamentaires (legs universel, particulier, à titre universel)
+
+**Documents générables (templates disponibles) :**
+- [templates/convention-pacs.md](templates/convention-pacs.md) — Convention de PACS
+- [templates/contrat-mariage-separation.md](templates/contrat-mariage-separation.md) — Contrat de mariage (séparation de biens)
+- [templates/testament-olographe.md](templates/testament-olographe.md) — Testament olographe
 
 Voir [references/famille.md](references/famille.md) pour le détail.
 
@@ -377,8 +390,13 @@ Modèles de documents disponibles dans `templates/` :
 |----------|-------|
 | [templates/compromis-vente.md](templates/compromis-vente.md) | Compromis de vente (promesse synallagmatique) |
 | [templates/statuts-sci.md](templates/statuts-sci.md) | Statuts de SCI |
+| [templates/donation-simple.md](templates/donation-simple.md) | Donation simple (entre vifs) |
 | [templates/donation-entre-epoux.md](templates/donation-entre-epoux.md) | Donation au dernier vivant |
 | [templates/declaration-succession-checklist.md](templates/declaration-succession-checklist.md) | Checklist déclaration de succession |
+| [templates/acte-notoriete.md](templates/acte-notoriete.md) | Acte de notoriété (identification des héritiers) |
+| [templates/testament-olographe.md](templates/testament-olographe.md) | Testament olographe (modèle de rédaction) |
+| [templates/convention-pacs.md](templates/convention-pacs.md) | Convention de PACS |
+| [templates/contrat-mariage-separation.md](templates/contrat-mariage-separation.md) | Contrat de mariage (séparation de biens) |
 
 Les templates utilisent des placeholders `{{variable}}` à remplir selon le contexte du client.
 
@@ -539,6 +557,7 @@ Seul un notaire en exercice peut authentifier cet acte.
 | [references/tarifs-emoluments.md](references/tarifs-emoluments.md) | Tarifs réglementés : émoluments proportionnels, fixes, débours |
 | [references/workflow-vente.md](references/workflow-vente.md) | Workflow complet : de l'estimation à la remise des clés (12 étapes) |
 | [references/workflow-succession.md](references/workflow-succession.md) | Workflow complet : du décès au partage final (12 étapes) |
+| [references/workflow-donation.md](references/workflow-donation.md) | Workflow complet : de la préparation à la déclaration fiscale (10 étapes) |
 
 ## Données
 
@@ -546,7 +565,7 @@ Le skill inclut des données structurées dans `data/` :
 
 | Fichier | Contenu | Source |
 |---------|---------|--------|
-| `data/dmto-departements.json` | Taux DMTO par département (4,50% ou 5,00%) | Art. 1594 D CGI, délibérations départementales |
+| `data/dmto-departements.json` | Taux DMTO des 101 départements (4,50% ou 5,00%) | Art. 1594 D CGI, délibérations départementales |
 | `data/diagnostics-obligatoires.json` | Matrice des diagnostics selon type/âge du bien | Art. L271-4 CCH |
 | `data/abattements-succession-donation.json` | Abattements, barèmes, usufruit art. 669 CGI | Art. 777, 779, 790 CGI |
 
