@@ -1,0 +1,150 @@
+{
+  "_meta": {
+    "description": "Taux des droits de mutation à titre onéreux (DMTO) par département",
+    "last_updated": "2026-03-24",
+    "source": "Art. 1594 D et 1594 E CGI — Délibérations départementales",
+    "notes": "Depuis le 1er avril 2025, les départements peuvent porter la taxe de publicité foncière de 4,50% à 5,00% (art. 116 LFI 2025). Seuls quelques départements n'ont pas relevé le taux.",
+    "composition_ancien": {
+      "taxe_departementale": "variable (4,50% ou 5,00%)",
+      "taxe_communale": "1,20%",
+      "prelevement_etat": "2,37% de la taxe départementale",
+      "total_4_50": "5,81%",
+      "total_5_00": "6,37%"
+    },
+    "composition_neuf": {
+      "taxe_publicite_fonciere": "0,715%",
+      "note": "Les VEFA et immeubles neufs vendus dans les 5 ans de l'achèvement bénéficient du taux réduit"
+    }
+  },
+  "taux_par_defaut": {
+    "taxe_departementale": 5.00,
+    "taxe_communale": 1.20,
+    "prelevement_etat_pct_dept": 2.37,
+    "total": 6.37,
+    "note": "Depuis 2025, la majorité des départements appliquent 5,00%"
+  },
+  "departements_4_50": [
+    {
+      "code": "03",
+      "nom": "Allier",
+      "taux_dept": 4.50,
+      "total_dmto": 5.81
+    },
+    {
+      "code": "50",
+      "nom": "Manche",
+      "taux_dept": 4.50,
+      "total_dmto": 5.81
+    },
+    {
+      "code": "56",
+      "nom": "Morbihan",
+      "taux_dept": 4.50,
+      "total_dmto": 5.81
+    },
+    {
+      "code": "971",
+      "nom": "Guadeloupe",
+      "taux_dept": 4.50,
+      "total_dmto": 5.81
+    },
+    {
+      "code": "976",
+      "nom": "Mayotte",
+      "taux_dept": 4.50,
+      "total_dmto": 5.81
+    }
+  ],
+  "departements_5_00_extrait": [
+    {
+      "code": "75",
+      "nom": "Paris",
+      "taux_dept": 5.00,
+      "total_dmto": 6.37,
+      "date_hausse": "2025-04-01"
+    },
+    {
+      "code": "13",
+      "nom": "Bouches-du-Rhône",
+      "taux_dept": 5.00,
+      "total_dmto": 6.37,
+      "date_hausse": "2025-04-01"
+    },
+    {
+      "code": "69",
+      "nom": "Rhône",
+      "taux_dept": 5.00,
+      "total_dmto": 6.37,
+      "date_hausse": "2025-04-01"
+    },
+    {
+      "code": "33",
+      "nom": "Gironde",
+      "taux_dept": 5.00,
+      "total_dmto": 6.37,
+      "date_hausse": "2025-04-01"
+    },
+    {
+      "code": "31",
+      "nom": "Haute-Garonne",
+      "taux_dept": 5.00,
+      "total_dmto": 6.37,
+      "date_hausse": "2025-04-01"
+    },
+    {
+      "code": "59",
+      "nom": "Nord",
+      "taux_dept": 5.00,
+      "total_dmto": 6.37,
+      "date_hausse": "2025-04-01"
+    },
+    {
+      "code": "44",
+      "nom": "Loire-Atlantique",
+      "taux_dept": 5.00,
+      "total_dmto": 6.37,
+      "date_hausse": "2025-04-01"
+    },
+    {
+      "code": "06",
+      "nom": "Alpes-Maritimes",
+      "taux_dept": 5.00,
+      "total_dmto": 6.37,
+      "date_hausse": "2025-04-01"
+    },
+    {
+      "code": "67",
+      "nom": "Bas-Rhin",
+      "taux_dept": 5.00,
+      "total_dmto": 6.37,
+      "date_hausse": "2025-04-01"
+    },
+    {
+      "code": "34",
+      "nom": "Hérault",
+      "taux_dept": 5.00,
+      "total_dmto": 6.37,
+      "date_hausse": "2025-04-01"
+    }
+  ],
+  "exonerations_dmto": [
+    {
+      "type": "Primo-accédant résidence principale",
+      "condition": "Délibération du conseil départemental",
+      "reduction": "Jusqu'à 0,70 point sur le taux départemental",
+      "base_legale": "Art. 1594 F ter CGI"
+    },
+    {
+      "type": "Acquisition de logements sociaux",
+      "condition": "HLM, SEM, EPL",
+      "reduction": "Exonération ou taux réduit selon le cas",
+      "base_legale": "Art. 1594 D et 1594 F quinquies CGI"
+    },
+    {
+      "type": "ZRR (communes rurales)",
+      "condition": "Certaines acquisitions en zone de revitalisation rurale",
+      "reduction": "Taux réduit possible par délibération",
+      "base_legale": "Art. 1594 F quinquies A CGI"
+    }
+  ]
+}

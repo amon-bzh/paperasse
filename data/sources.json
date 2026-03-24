@@ -48,6 +48,92 @@
       "provider": "INSEE",
       "update_frequency": "monthly",
       "description": "Utilisé via API par fetch_company.py. Pas de fichier local (base trop volumineuse)."
+    },
+    {
+      "id": "dvf",
+      "name": "Demandes de Valeurs Foncières (DVF)",
+      "file": null,
+      "api_url": "https://apidf-preprod.cerema.fr/dvf_opendata/mutations/",
+      "alt_url": "https://app.dvf.etalab.gouv.fr/",
+      "source_page": "https://www.data.gouv.fr/datasets/demandes-de-valeurs-foncieres/",
+      "license": "Open License v2.0",
+      "provider": "DGFIP via Cerema/Etalab",
+      "update_frequency": "biannual",
+      "skill": "notaire",
+      "description": "Transactions immobilières depuis 2014. Utilisé pour estimer la valeur vénale d'un bien (comparables). Paramètres: code_insee, nature_mutation, page_size."
+    },
+    {
+      "id": "cadastre",
+      "name": "API Carto Cadastre (IGN)",
+      "file": null,
+      "api_url": "https://apicarto.ign.fr/api/cadastre/parcelle",
+      "source_page": "https://apicarto.ign.fr/api/doc/cadastre",
+      "license": "Open License v2.0",
+      "provider": "IGN",
+      "update_frequency": "annual",
+      "skill": "notaire",
+      "description": "Données cadastrales (parcelles, sections, surfaces). Paramètres: code_insee, section, numero."
+    },
+    {
+      "id": "georisques",
+      "name": "Géorisques API",
+      "file": null,
+      "api_url": "https://www.georisques.gouv.fr/api/v1/",
+      "source_page": "https://www.georisques.gouv.fr/",
+      "license": "Open License v2.0",
+      "provider": "BRGM / Ministère de la Transition Écologique",
+      "update_frequency": "continuous",
+      "skill": "notaire",
+      "description": "Risques naturels, technologiques, radon, SIS. Utilisé pour l'ERP (État des Risques et Pollutions). Endpoint: /resultats_rapport_risque?latlon={lon},{lat}"
+    },
+    {
+      "id": "gpu",
+      "name": "Géoportail de l'Urbanisme (GPU)",
+      "file": null,
+      "api_url": "https://apicarto.ign.fr/api/gpu/zone-urba",
+      "source_page": "https://www.geoportail-urbanisme.gouv.fr/",
+      "license": "Open License v2.0",
+      "provider": "IGN / Ministère de la Transition Écologique",
+      "update_frequency": "continuous",
+      "skill": "notaire",
+      "description": "PLU, servitudes d'utilité publique, zonage. Requête par géométrie GeoJSON. Utilisé pour vérifier la constructibilité et le zonage."
+    },
+    {
+      "id": "ban",
+      "name": "Base Adresse Nationale (BAN)",
+      "file": null,
+      "api_url": "https://api-adresse.data.gouv.fr/search/",
+      "source_page": "https://adresse.data.gouv.fr/",
+      "license": "Open License v2.0",
+      "provider": "DINUM / IGN / La Poste",
+      "update_frequency": "monthly",
+      "skill": "notaire",
+      "description": "Géocodage d'adresses (coordonnées GPS, code INSEE, code postal). Point d'entrée pour enchaîner DVF, cadastre, géorisques, GPU."
+    },
+    {
+      "id": "legifrance",
+      "name": "Légifrance (API PISTE)",
+      "file": null,
+      "api_url": "https://api.piste.gouv.fr/dila/legifrance/lf-engine-app/",
+      "auth": "OAuth 2.0 (client_credentials) via https://oauth.piste.gouv.fr/api/oauth/token",
+      "source_page": "https://developer.aife.economie.gouv.fr/",
+      "license": "Open License v2.0",
+      "provider": "DILA",
+      "update_frequency": "daily",
+      "skill": "notaire",
+      "description": "Accès aux codes, lois, décrets, jurisprudence. Textes clés: Code civil (LEGITEXT000006070721), CGI (LEGITEXT000006069577), Code urbanisme (LEGITEXT000006074075), CCH (LEGITEXT000006074096)."
+    },
+    {
+      "id": "matchid-deces",
+      "name": "MatchID Fichier des décès",
+      "file": null,
+      "api_url": "https://deces.matchid.io/deces/api/v1/search",
+      "source_page": "https://deces.matchid.io/",
+      "license": "Open License v2.0",
+      "provider": "INSEE via MatchID",
+      "update_frequency": "monthly",
+      "skill": "notaire",
+      "description": "Fichier des personnes décédées (INSEE). Utile pour vérifier un décès dans le cadre d'une succession. Paramètres: q (nom), birthDate, deathDate."
     }
   ]
 }

@@ -54,6 +54,13 @@ Les skills sont du Markdown. Ils fonctionnent avec tout agent ou outil capable d
 | Checklist dépôt greffe | Template `depot-greffe-checklist.md` | Documents et délais |
 | Contrôle fiscal simulé | Skill `controleur-fiscal` | 8 axes de vérification DGFIP |
 | Audit CAC | Skill `commissaire-aux-comptes` | 7 phases NEP, opinion motivée |
+| Frais de notaire | Skill `notaire` | DMTO, émoluments, CSI, débours (ancien et neuf) |
+| Plus-value immobilière | Skill `notaire` | Abattements durée de détention, surtaxe, exonérations |
+| Droits de succession | Skill `notaire` | Barème progressif, abattements, partage, conjoint survivant |
+| Droits de donation | Skill `notaire` | Donation simple, donation-partage, démembrement, Dutreil |
+| Projets d'actes notariés | Skill `notaire` | Compromis, SCI, PACS, donation, testament (projets de travail) |
+| Diagnostics immobiliers | Skill `notaire` | Checklist DDT complète selon ancienneté et localisation |
+| Conseil patrimonial | Skill `notaire` | Usufruit/nue-propriété, SCI familiale, transmission |
 
 ### Ce qui reste manuel
 
@@ -64,6 +71,9 @@ Les skills sont du Markdown. Ils fonctionnent avec tout agent ou outil capable d
 | Dépôt sur Infogreffe / impots.gouv.fr | Authentification personnelle requise |
 | Télépaiement IS | Accès à l'espace professionnel impots.gouv.fr |
 | Validation finale des montants | Responsabilité de l'expert-comptable ou du dirigeant |
+| Authentification des actes notariés | Monopole du notaire (officier public, sceau et signature) |
+| Dépôt au service de la publicité foncière | Procédure réservée aux notaires |
+| Consultation FICOBA (comptes bancaires du défunt) | Accès réservé aux notaires pour les successions |
 
 ---
 
@@ -144,6 +154,7 @@ Chaque anomalie = un **chef de redressement** avec base légale, montants et ris
 | [`comptable`](#comptable--expert-comptable) | Expert-Comptable | Écritures, PCG, TVA, IS/IR, clôture complète, FEC, PDFs |
 | [`controleur-fiscal`](#contrôleur-fiscal--préparation-au-contrôle-fiscal) | Contrôleur Fiscal | Simulation de contrôle DGFIP, analyse FEC, chefs de redressement |
 | [`commissaire-aux-comptes`](#commissaire-aux-comptes--audit-des-comptes-annuels) | Commissaire aux Comptes | Audit NEP en 7 phases, validation bilan/CR/liasse, opinion |
+| [`notaire`](#notaire--droit-immobilier-successions-donations-famille) | Notaire | Frais de notaire, vente immobilière, successions, donations, SCI, PACS, plus-value |
 
 ---
 
@@ -195,6 +206,27 @@ Reproduit la démarche d'un commissaire aux comptes (CAC) pour valider les compt
 - Émission d'une opinion motivée (sans réserve, avec réserve, refus, impossibilité)
 
 Utile avant l'approbation des comptes, même sans obligation légale de CAC.
+
+---
+
+### `notaire` — Droit immobilier, successions, donations, famille
+
+Copilote juridique pour le droit immobilier, les successions, les donations, le droit de la famille et le droit des sociétés en France.
+
+**Fonctionnalités :**
+- Calcul complet des frais de notaire (DMTO, émoluments, CSI, débours)
+- Préparation de compromis de vente et vérification des diagnostics obligatoires
+- Calcul de la plus-value immobilière (abattements pour durée de détention, surtaxe, exonérations)
+- Calcul des droits de succession (barème progressif, abattements, partage, conjoint survivant)
+- Calcul des droits de donation (donation simple, donation-partage, démembrement, Pacte Dutreil)
+- Évaluation usufruit/nue-propriété (barème art. 669 CGI)
+- Rédaction de statuts de SCI (gestion, familiale, construction-vente)
+- Contrats de mariage (tous régimes), conventions de PACS
+- Testaments, donations entre époux (au dernier vivant)
+- Vérification urbanisme (PLU, servitudes, droits de préemption)
+- Conseil en optimisation patrimoniale et transmission
+
+Ne remplace pas un notaire en exercice. Seul un officier public peut authentifier les actes.
 
 ---
 
@@ -280,6 +312,7 @@ npx agentskill init
 /learn @paperasse/comptable
 /learn @paperasse/controleur-fiscal
 /learn @paperasse/commissaire-aux-comptes
+/learn @paperasse/notaire
 ```
 
 ### Claude Code (CLI)
@@ -289,7 +322,7 @@ npx agentskill init
 cp -r comptable ~/.claude/skills/
 
 # Ou tous les skills d'un coup
-for skill in comptable controleur-fiscal commissaire-aux-comptes; do
+for skill in comptable controleur-fiscal commissaire-aux-comptes notaire; do
   cp -r $skill ~/.claude/skills/
 done
 ```
@@ -312,6 +345,7 @@ Pour les agents qui travaillent dans [Claude Cowork](https://claude.com/product/
    - Charger `comptable/SKILL.md` pour la comptabilité, TVA, IS, clôture.
    - Charger `controleur-fiscal/SKILL.md` pour simuler un contrôle fiscal.
    - Charger `commissaire-aux-comptes/SKILL.md` pour auditer les comptes annuels.
+   - Charger `notaire/SKILL.md` pour le droit immobilier, successions, donations, famille.
    ```
 
 ### Codex (OpenAI)
@@ -320,7 +354,7 @@ Codex peut lire des fichiers dans son environnement. Ajoutez les skills au repo 
 
 ```bash
 # Ajouter les skills au projet
-cp -r comptable controleur-fiscal commissaire-aux-comptes ./
+cp -r comptable controleur-fiscal commissaire-aux-comptes notaire ./
 
 # Dans les instructions de l'agent :
 # "Charger comptable/SKILL.md pour la comptabilité"
@@ -342,12 +376,13 @@ Ces skills sont du Markdown. Ils marchent partout où un LLM peut lire des fichi
 ```bash
 # Dans n'importe quel projet
 mkdir -p .ai/skills
-cp -r comptable controleur-fiscal commissaire-aux-comptes .ai/skills/
+cp -r comptable controleur-fiscal commissaire-aux-comptes notaire .ai/skills/
 
 # Puis dans vos instructions système / CLAUDE.md / rules :
 # "Charger comptable/SKILL.md pour la comptabilité"
 # "Charger controleur-fiscal/SKILL.md pour un contrôle fiscal"
 # "Charger commissaire-aux-comptes/SKILL.md pour un audit"
+# "Charger notaire/SKILL.md pour le droit immobilier, successions, donations"
 ```
 
 ---
@@ -372,6 +407,16 @@ Lancez votre agent et posez vos questions en français :
 > Mon compte courant 455 est à 15 000 EUR, c'est risqué ?
 
 > Prépare la liasse fiscale 2065 + 2033 pour mon exercice.
+
+> Calcule les frais de notaire pour un appartement à 350 000 EUR à Paris.
+
+> Ma mère est décédée, nous sommes 3 enfants. Calcule les droits de succession.
+
+> Je veux donner un appartement à mes enfants en gardant l'usufruit. Combien ça coûte ?
+
+> Rédige les statuts d'une SCI familiale pour gérer un immeuble locatif.
+
+> Quels diagnostics sont obligatoires pour vendre ma maison de 1985 ?
 ```
 
 Les skills commencent par vérifier les informations sur votre entreprise (via `company.json` ou en posant des questions). Ils ne procèdent jamais sans contexte validé.
@@ -443,7 +488,7 @@ python3 scripts/update_data.py --force   # Forcer le re-téléchargement
 | `commissaire-aux-comptes` | Commissaire aux comptes | Done |
 | `avocat` | Avocat d'affaires | Bientôt |
 | `drh` | DRH / Ressources humaines | Bientôt |
-| `notaire` | Notaire | Un jour |
+| `notaire` | Notaire | Done |
 
 ---
 
@@ -451,7 +496,7 @@ python3 scripts/update_data.py --force   # Forcer le re-téléchargement
 
 *Ce projet est fourni "tel quel", sans garantie d'aucune sorte.*
 
-**Ces skills ne remplacent pas un expert-comptable inscrit à l'Ordre, ni un commissaire aux comptes certifié.** Ils sont conçus comme outils d'aide à la décision et de préparation.
+**Ces skills ne remplacent pas un expert-comptable inscrit à l'Ordre, un commissaire aux comptes certifié, ou un notaire en exercice.** Ils sont conçus comme outils d'aide à la décision et de préparation.
 
 Pour les situations complexes (litiges, montages fiscaux, contrôles en cours), consultez un professionnel avec une assurance RC Pro et un numéro SIRET.
 
