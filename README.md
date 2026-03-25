@@ -25,11 +25,23 @@
 
 ## Qu'est-ce que c'est ?
 
-Paperasse est une collection de skills pour agents IA ([Claude Code](https://claude.com/product/claude-code), [Claude Cowork](https://claude.com/product/cowork), [Codex](https://openai.com/codex/), [Cursor](https://cursor.com), [Windsurf](https://windsurf.com), [Cline](https://cline.bot), [Aider](https://aider.chat)) spécialisés dans la comptabilité, la fiscalité et l'audit des entreprises françaises.
+Paperasse est une collection de skills pour agents IA ([Claude Code](https://claude.com/product/claude-code), [Claude Cowork](https://claude.com/product/cowork), [Codex](https://openai.com/codex/), [Cursor](https://cursor.com), [Windsurf](https://windsurf.com), [Cline](https://cline.bot), [Aider](https://aider.chat)) spécialisés dans la comptabilité, la fiscalité, le notariat et l'audit des entreprises françaises.
 
-Chaque skill transforme votre agent en copilote expert d'un métier de la paperasse : il connaît les textes (CGI, BOFiP, NEP), les formulaires, les échéances, et surtout il ne se trompe pas de case dans la liasse fiscale.
+Chaque skill transforme votre agent en copilote expert d'un métier de la paperasse : comptabilité (PCG, TVA, IS, clôture annuelle, FEC, liasse fiscale), contrôle fiscal, audit CAC, et droit notarial (immobilier, succession, donation). Il connaît les textes (CGI, BOFiP, NEP), les formulaires, les échéances, et ne se trompe pas de case dans la liasse fiscale.
 
-Les skills sont du Markdown. Ils fonctionnent avec tout agent ou outil capable de lire des fichiers.
+Les skills sont du Markdown. Ils fonctionnent avec tout agent ou outil capable de lire des fichiers. Paperasse inclut aussi des connecteurs pour récupérer automatiquement vos transactions bancaires (Qonto) et paiements (Stripe).
+
+---
+
+## Quick Start
+
+Copiez ce message et envoyez-le à votre agent IA :
+
+```
+Installe tous les skills du repo github https://github.com/romainsimon/paperasse et lance le setup pour la gestion de toute ma paperasse
+```
+
+L'agent va cloner le repo, installer les skills, et lancer le setup guidé qui vous posera quelques questions (nom de votre société, régime TVA, comptes bancaires) pour configurer votre environnement.
 
 ---
 
