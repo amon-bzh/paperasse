@@ -119,7 +119,8 @@ Consulter selon le besoin :
 
 | Fichier | Contenu |
 |---------|---------|
-| [references/setup.md](references/setup.md) | **Setup guidé première utilisation (7 étapes)** |
+| [references/setup.md](references/setup.md) | **Setup guidé première utilisation (5 étapes)** |
+| [references/arborescence.md](references/arborescence.md) | **Convention de nommage et rangement des fichiers** |
 | [references/integrations.md](references/integrations.md) | **Connecteurs Qonto et Stripe, rapprochement bancaire** |
 | [references/formats.md](references/formats.md) | **Formats de sortie (écritures, journal JSON, risques)** |
 | [references/pcg.md](references/pcg.md) | Plan Comptable Général : structure des classes |

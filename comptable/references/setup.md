@@ -43,13 +43,20 @@ Proposer les options :
 - Réel simplifié (déclaration annuelle CA12)
 - Réel normal (déclaration mensuelle CA3)
 
-## Étape 3 : Banque
+## Étape 3 : Comptes bancaires
 
-> Utilisez-vous **Qonto** comme banque professionnelle ?
+> Quels sont vos **comptes bancaires professionnels** ? (nom de la banque pour chacun)
+> Utilisez-vous **Qonto** ?
 
-**Si oui** :
-- Mettre `qonto.enabled` à `true` dans `company.json`
-- Demander les identifiants API :
+L'utilisateur peut avoir un ou plusieurs comptes (Qonto, BNP, SG, Boursorama, etc.). Pour chaque compte, collecter :
+
+- **Nom** (ex: "Qonto", "BNP Entreprise", "Boursorama Pro")
+- **Identifiant** : généré automatiquement en slug du nom (ex: `qonto`, `bnp`, `boursorama`)
+- **Numéro de compte PCG** : `5121` pour le premier, `5122` pour le deuxième, etc.
+
+### Qonto (connecteur automatique)
+
+Si l'utilisateur a Qonto, demander les identifiants API :
 
 > Pour connecter Qonto, j'ai besoin de vos identifiants API.
 > Vous les trouverez dans le dashboard Qonto > **Settings > Integrations > API**.
@@ -58,9 +65,27 @@ Proposer les options :
 > Et votre **Secret key** (QONTO_API_SECRET) ?
 
 - Écrire les valeurs dans `.env` à la racine du projet (le créer s'il n'existe pas).
-- Tester la connexion : `node integrations/qonto/fetch.js --start $(date +%Y-%m-%d) --end $(date +%Y-%m-%d)`. Si ça fonctionne, confirmer. Si erreur, afficher le message et demander de vérifier les identifiants.
+- Mettre `qonto.enabled` à `true` dans `company.json`.
+- Tester la connexion : `node integrations/qonto/fetch.js --start $(date +%Y-%m-%d) --end $(date +%Y-%m-%d)`. Confirmer ou demander de vérifier si erreur.
 
-**Si non** : demander le nom de la banque principale (pour le libellé du compte 512).
+### Autres banques (import manuel)
+
+Pour chaque banque sans connecteur, expliquer :
+
+> Pour **[nom banque]**, vous devrez exporter vos relevés depuis votre espace en ligne (format CSV, OFX ou PDF).
+> Déposez les fichiers dans `data/imports/[slug-banque]/` en les nommant par période :
+> `releve-2025-01.csv`, `releve-2025-02.csv`, etc.
+
+Créer le dossier `data/imports/[slug-banque]/` pour chaque banque manuelle.
+
+Résultat dans `company.json` :
+
+```json
+"banks": [
+  { "id": "qonto", "name": "Qonto", "account": "5121", "type": "api" },
+  { "id": "bnp", "name": "BNP Paribas", "account": "5122", "type": "import", "import_dir": "data/imports/bnp/" }
+]
+```
 
 ## Étape 4 : Paiements en ligne
 
@@ -111,7 +136,9 @@ Société configurée :
   Régime imposition : [IS/IR] (déduit de la forme juridique)
   Exercice : [debut] > [fin] (déduit de la date de création)
   Premier exercice : [oui/non]
-  Banque : [Qonto / autre]
+  Comptes bancaires :
+    - [nom] (5121) [API / import manuel]
+    - [nom] (5122) [API / import manuel]
   Stripe : [X compte(s) configuré(s) / non]
 ```
 
