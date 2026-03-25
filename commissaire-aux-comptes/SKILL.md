@@ -4,6 +4,7 @@ metadata:
   last_updated: 2026-03-23
 includes:
   - data/**
+  - company.example.json
 description: |
   Commissaire aux comptes IA pour l'audit des comptes annuels d'entreprises françaises. Applique la démarche
   NEP en 7 phases : prise de connaissance, contrôle du FEC, vérification du bilan, du compte de résultat,

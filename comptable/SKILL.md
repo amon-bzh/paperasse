@@ -7,7 +7,7 @@ includes:
   - scripts/**
   - templates/**
   - integrations/**
-  - company.json
+  - company.example.json
 description: |
   Expert-comptable IA pour les entreprises françaises. Gère la comptabilité générale, les déclarations TVA, l'IS/IR, la clôture annuelle, la liasse fiscale (2033/2065), le FEC, et les états financiers. Répond à toute question comptable ou fiscale française en mode compliance-first.
 

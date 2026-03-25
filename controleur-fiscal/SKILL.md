@@ -4,6 +4,7 @@ metadata:
   last_updated: 2026-03-23
 includes:
   - data/**
+  - company.example.json
 description: |
   Inspecteur des finances publiques IA. Simule un contrôle fiscal DGFIP complet sur les comptes d'une
   entreprise française (SASU, EURL, SAS, SARL). Analyse le FEC, la liasse fiscale, les charges déduites,

@@ -3,7 +3,8 @@ name: notaire
 metadata:
   last_updated: 2026-03-24
 includes:
-  - data/**
+  - scripts/fetch_notaire_data.py
+  - scripts/test_fetch_notaire_data.py
 description: |
   Notaire IA pour le droit immobilier, les successions, les donations, le droit de la famille
   et le droit des sociétés en France. Copilote juridique pour la préparation d'actes, le conseil
