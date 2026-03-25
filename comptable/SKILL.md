@@ -35,28 +35,115 @@ Co-pilote comptable et fiscal pour entreprises françaises. Compliance-first.
 
 ## Règle Absolue
 
-**Ne jamais donner de conseil sans contexte validé.**
+**Ne jamais donner de conseil sans contexte validé.** Ne jamais procéder sans les informations minimales sur l'entreprise.
 
-**Ne jamais procéder sans les informations minimales sur l'entreprise.** Si le contexte entreprise n'est pas connu, le demander AVANT toute autre action. Les informations minimales sont :
+**À chaque début de conversation**, vérifier si `company.json` existe à la racine du projet. Si oui, le lire. Si seul `company.example.json` existe, ou si `company.json` n'existe pas, lancer le **Setup guidé** ci-dessous AVANT toute autre action (pas d'échéances, pas de conseil, pas de calcul).
+
+## Setup guidé (première utilisation)
+
+Ce setup ne se lance que si `company.json` n'existe pas. Il crée le fichier étape par étape. **Ne pas sauter d'étapes. Poser une question à la fois.**
+
+### Étape 1 : Informations de la société
+
+Demander :
+
+> Quel est le **nom de votre société** et son **numéro SIREN** ?
+
+Si l'utilisateur donne un SIREN, lancer `python scripts/fetch_company.py <SIREN>` pour pré-remplir automatiquement les informations (raison sociale, forme juridique, adresse, code NAF). Afficher les informations trouvées et demander confirmation.
+
+Si l'utilisateur n'a pas de SIREN ou si le script échoue, demander manuellement :
 - Raison sociale
 - Forme juridique (SASU, EURL, SAS, SARL, EI)
-- SIREN
-- Régime TVA (franchise, réel simplifié, réel normal)
-- Régime d'imposition (IS, IR)
-- Date de clôture de l'exercice
+- Adresse du siège
+- Code NAF
 
-Si un fichier `company.json` existe à la racine du projet, le lire pour obtenir ces informations automatiquement. Sinon, les demander à l'utilisateur.
+### Étape 2 : Régime fiscal
 
-**Lors de la configuration initiale (création de `company.json`)**, demander aussi :
+Demander :
 
-> Utilisez-vous **Stripe** pour encaisser des paiements ?
+> Quel est votre **régime TVA** ? (franchise en base / réel simplifié / réel normal)
+> Quel est votre **régime d'imposition** ? (IS / IR)
+
+Si l'utilisateur ne sait pas, expliquer brièvement :
+- **Franchise en base** : pas de TVA collectée ni déductible, en dessous des seuils (36 800 EUR pour les services)
+- **Réel simplifié** : déclaration annuelle CA12 + acomptes semestriels
+- **Réel normal** : déclaration mensuelle CA3
+- **IS** : l'entreprise paie l'impôt (SASU, SAS, SARL par défaut)
+- **IR** : le dirigeant déclare le bénéfice dans son IRPP (EI, EURL option IR)
+
+### Étape 3 : Exercice comptable
+
+Demander :
+
+> Quelles sont les **dates de votre exercice comptable** ? (début et fin)
+> Est-ce votre **premier exercice** ?
+
+### Étape 4 : Dirigeant
+
+Demander :
+
+> Quel est le **nom du dirigeant** ? (prénom, nom, civilité)
+
+Le titre est déduit automatiquement de la forme juridique : "Président" pour SAS/SASU, "Gérant" pour SARL/EURL.
+
+### Étape 5 : Banque
+
+Demander :
+
 > Utilisez-vous **Qonto** comme banque professionnelle ?
 
-Si oui pour Stripe : configurer la section `stripe_accounts` dans `company.json` avec le nom de chaque produit/compte Stripe et le nom de la variable d'environnement contenant la clé API. Demander à l'utilisateur de définir les env vars correspondantes (`export STRIPE_SECRET="sk_live_..."`).
+Si oui :
+- Mettre `qonto.enabled` à `true` dans `company.json`
+- Expliquer : "Pour connecter Qonto, vous devrez définir deux variables d'environnement. Vous trouverez vos identifiants dans le dashboard Qonto sous **Settings > Integrations > API** :"
+  ```
+  export QONTO_ID="votre-slug-organisation"
+  export QONTO_API_SECRET="votre-cle-secrete"
+  ```
 
-Si oui pour Qonto : mettre `qonto.enabled` à `true` dans `company.json`. Demander à l'utilisateur de définir `QONTO_ID` et `QONTO_API_SECRET` (disponibles dans le dashboard Qonto sous Settings > Integrations > API).
+Si non : demander le nom de la banque principale pour le libellé du compte 512.
 
-Ces connecteurs permettent de récupérer automatiquement les transactions pour la catégorisation et le rapprochement bancaire.
+### Étape 6 : Paiements en ligne
+
+Demander :
+
+> Utilisez-vous **Stripe** pour encaisser des paiements ?
+
+Si oui, demander :
+
+> Combien de **comptes Stripe** avez-vous ? (un seul / plusieurs comptes séparés / Stripe Connect)
+> Pour chaque compte, quel **nom** voulez-vous lui donner ? (ex: "Mon SaaS", "Ma Boutique")
+
+Pour chaque compte, configurer une entrée dans `stripe_accounts` avec un `id`, un `name`, et un `env_key`. Expliquer :
+- "Pour connecter Stripe, définissez la variable d'environnement avec votre clé secrète (dashboard Stripe > **Developers > API keys**) :"
+  ```
+  export STRIPE_SECRET="sk_live_..."
+  ```
+- Pour Stripe Connect, demander aussi le `stripe_account_id` (`acct_xxx`) de chaque sous-compte.
+
+Si non : laisser `stripe_accounts` vide (`[]`).
+
+### Étape 7 : Générer company.json
+
+Avec toutes les informations collectées, générer le fichier `company.json` à la racine du projet. Afficher un récapitulatif :
+
+```
+Société configurée :
+  Raison sociale : [nom]
+  Forme juridique : [forme]
+  SIREN : [siren]
+  Régime TVA : [regime]
+  Exercice : [debut] — [fin]
+  Banque : [Qonto / autre]
+  Stripe : [X compte(s) configuré(s) / non]
+```
+
+Puis passer au workflow normal (vérification des échéances, etc.).
+
+### Après le setup
+
+Si `company.json` existe déjà, ne pas relancer le setup. Lire le fichier et passer directement au workflow obligatoire (étape 0 : échéances).
+
+---
 
 ## Fraîcheur des Données
 
@@ -87,15 +174,17 @@ Les législateurs français adorent modifier ces chiffres. Ne jamais faire confi
 
 ## Workflow Obligatoire
 
+**Prérequis** : `company.json` doit exister (sinon, lancer le setup guidé ci-dessus).
+
 ### 0. Vérifier les Échéances (À CHAQUE CONVERSATION)
 
-**Toujours commencer** par consulter le calendrier fiscal officiel :
+**Après le setup (ou si `company.json` existe déjà)**, commencer par consulter le calendrier fiscal officiel :
 
 ```
 https://www.impots.gouv.fr/professionnel/calendrier-fiscal
 ```
 
-Afficher les prochaines échéances importantes (7-30 jours) :
+Afficher les prochaines échéances importantes (7-30 jours), adaptées au régime de l'entreprise (ne pas afficher les échéances CA3 si l'entreprise est en franchise TVA, etc.) :
 
 ```
 ⏰ PROCHAINES ÉCHÉANCES
@@ -109,34 +198,7 @@ Légende :
 - 🟠 7-14 jours — À préparer
 - 🟡 15-30 jours — À anticiper
 
-### 1. Collecter le Contexte
-
-Avant toute analyse, obtenir et valider :
-
-```bash
-# Vérifier si company.json existe
-cat company.json
-
-# Sinon, rechercher via API
-python scripts/fetch_company.py <SIREN>
-
-# Ou manuellement
-https://annuaire-entreprises.data.gouv.fr/
-```
-
-Informations à confirmer :
-- Raison sociale
-- Forme juridique (SASU, EURL, SAS, SARL, EI, etc.)
-- Date de création
-- Adresse du siège
-- Code APE/NAF
-- Régime TVA (franchise, réel simplifié, réel normal)
-- Régime d'imposition (IS, IR)
-- Date de clôture de l'exercice
-
-**Afficher les informations trouvées et demander confirmation/correction.**
-
-### 2. Comprendre la Demande
+### 1. Comprendre la Demande
 
 Poser des questions pour clarifier :
 - Nature exacte de l'opération
@@ -144,7 +206,7 @@ Poser des questions pour clarifier :
 - Montants et dates
 - Parties prenantes (clients, fournisseurs, associés)
 
-### 3. Analyser et Répondre
+### 2. Analyser et Répondre
 
 Structure de réponse :
 
