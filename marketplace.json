@@ -1,0 +1,36 @@
+{
+  "name": "paperasse",
+  "description": "Skills pour agents IA spécialisés dans la bureaucratie française",
+  "version": "1.0.0",
+  "author": "romainsimon",
+  "license": "MIT",
+  "skills": [
+    {
+      "slug": "comptable",
+      "name": "Expert-Comptable",
+      "path": "comptable/SKILL.md",
+      "description": "Comptabilité, TVA, IS, clôture annuelle, FEC, liasse fiscale"
+    },
+    {
+      "slug": "controleur-fiscal",
+      "name": "Contrôleur Fiscal",
+      "path": "controleur-fiscal/SKILL.md",
+      "description": "Simulation de contrôle DGFIP, chefs de redressement"
+    },
+    {
+      "slug": "commissaire-aux-comptes",
+      "name": "Commissaire aux Comptes",
+      "path": "commissaire-aux-comptes/SKILL.md",
+      "description": "Audit NEP en 7 phases, opinion motivée"
+    },
+    {
+      "slug": "notaire",
+      "name": "Notaire",
+      "path": "notaire/SKILL.md",
+      "description": "Frais de notaire, successions, donations, SCI, PACS"
+    }
+  ],
+  "integrations": ["qonto", "stripe"],
+  "language": "fr",
+  "country": "FR"
+}
