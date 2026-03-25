@@ -29,6 +29,10 @@ Connecteurs pour récupérer automatiquement les transactions bancaires et les o
 
 ### Stripe
 
+#### Compte unique ou comptes séparés
+
+Le cas le plus courant. Chaque compte Stripe a sa propre clé API.
+
 1. Dans votre dashboard Stripe : **Developers > API keys**
 2. Copiez votre Secret key (commence par `sk_live_` ou `sk_test_`)
 3. Configurez vos comptes dans `company.json` :
@@ -43,6 +47,21 @@ Connecteurs pour récupérer automatiquement les transactions bancaires et les o
    ```
 
 Si vous avez plusieurs produits Stripe (comptes séparés), ajoutez une entrée par compte avec un `env_key` différent.
+
+#### Stripe Connect (organisation avec sous-comptes)
+
+Si vous utilisez Stripe Connect (un compte plateforme avec des comptes connectés), ajoutez le `stripe_account_id` (le `acct_xxx` du sous-compte) :
+
+```json
+"stripe_accounts": [
+  { "id": "client-a", "name": "Client A", "env_key": "STRIPE_PLATFORM_SECRET", "stripe_account_id": "acct_xxx" },
+  { "id": "client-b", "name": "Client B", "env_key": "STRIPE_PLATFORM_SECRET", "stripe_account_id": "acct_yyy" }
+]
+```
+
+Tous les sous-comptes peuvent partager la même clé plateforme (`env_key`). Le connecteur envoie automatiquement le header `Stripe-Account` pour agir au nom de chaque sous-compte.
+
+Vous pouvez mixer les deux modes (comptes séparés + Connect) dans le même tableau.
 
 ## Usage
 

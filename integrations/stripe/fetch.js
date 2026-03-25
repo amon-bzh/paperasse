@@ -2,14 +2,22 @@
  * Stripe Integration
  * Fetches charges, payouts, and balance transactions from one or more Stripe accounts.
  *
- * Configuration is read from company.json. Each entry in "stripe_accounts" defines
- * a Stripe account with a name, a label, and the environment variable that holds the API key.
+ * Supports two modes:
  *
- * Example company.json:
- *   "stripe_accounts": [
- *     { "id": "main", "name": "Mon SaaS", "env_key": "STRIPE_SECRET" },
- *     { "id": "shop", "name": "Ma Boutique", "env_key": "SHOP_STRIPE_SECRET" }
- *   ]
+ * 1. Separate accounts (each with its own API key):
+ *    "stripe_accounts": [
+ *      { "id": "saas", "name": "Mon SaaS", "env_key": "STRIPE_SECRET_SAAS" },
+ *      { "id": "shop", "name": "Ma Boutique", "env_key": "STRIPE_SECRET_SHOP" }
+ *    ]
+ *
+ * 2. Stripe Connect (one platform key + sub-account IDs):
+ *    "stripe_accounts": [
+ *      { "id": "client-a", "name": "Client A", "env_key": "STRIPE_PLATFORM_SECRET", "stripe_account_id": "acct_xxx" },
+ *      { "id": "client-b", "name": "Client B", "env_key": "STRIPE_PLATFORM_SECRET", "stripe_account_id": "acct_yyy" }
+ *    ]
+ *
+ * You can mix both modes. If stripe_account_id is present, the Stripe-Account
+ * header is sent with every API call to act on behalf of that connected account.
  *
  * Usage:
  *   node integrations/stripe/fetch.js
@@ -49,7 +57,9 @@ function loadStripeAccounts() {
 }
 
 /**
- * Initialize Stripe client for a specific account
+ * Initialize Stripe client for a specific account.
+ * If the account has a stripe_account_id (Connect), the client is configured
+ * to send the Stripe-Account header on every request.
  */
 function getStripeClient(account) {
   const apiKey = process.env[account.env_key];
@@ -60,7 +70,13 @@ function getStripeClient(account) {
   }
 
   const Stripe = require('stripe');
-  return new Stripe(apiKey);
+  const options = {};
+
+  if (account.stripe_account_id) {
+    options.stripeAccount = account.stripe_account_id;
+  }
+
+  return new Stripe(apiKey, options);
 }
 
 /**

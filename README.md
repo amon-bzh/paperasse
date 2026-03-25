@@ -276,6 +276,13 @@ Configurer dans `company.json` :
 
 Si vous avez plusieurs produits avec des comptes Stripe séparés, ajoutez une entrée par compte avec un `env_key` différent.
 
+Pour **Stripe Connect** (organisation avec sous-comptes), ajoutez le `stripe_account_id` :
+```json
+"stripe_accounts": [
+  { "id": "client-a", "name": "Client A", "env_key": "STRIPE_PLATFORM_SECRET", "stripe_account_id": "acct_xxx" }
+]
+```
+
 ```bash
 npm run fetch:stripe
 # ou avec filtrage :

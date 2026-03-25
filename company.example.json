@@ -41,7 +41,7 @@
       "id": "main",
       "name": "Mon Produit SaaS",
       "env_key": "STRIPE_SECRET",
-      "_comment": "Definir la variable d'environnement STRIPE_SECRET avec votre cle Stripe (sk_live_... ou sk_test_...)"
+      "_comment": "Definir STRIPE_SECRET avec votre cle Stripe (sk_live_... ou sk_test_...). Pour Stripe Connect, ajouter: stripe_account_id: acct_xxx"
     }
   ],
   "city": "Paris"
