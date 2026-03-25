@@ -49,11 +49,16 @@ Proposer les options :
 
 **Si oui** :
 - Mettre `qonto.enabled` à `true` dans `company.json`
-- Expliquer : "Pour connecter Qonto, définissez deux variables d'environnement (dashboard Qonto > **Settings > Integrations > API**) :"
-  ```
-  export QONTO_ID="votre-slug-organisation"
-  export QONTO_API_SECRET="votre-cle-secrete"
-  ```
+- Demander les identifiants API :
+
+> Pour connecter Qonto, j'ai besoin de vos identifiants API.
+> Vous les trouverez dans le dashboard Qonto > **Settings > Integrations > API**.
+>
+> Quel est votre **Organization slug** (QONTO_ID) ?
+> Et votre **Secret key** (QONTO_API_SECRET) ?
+
+- Écrire les valeurs dans `.env` à la racine du projet (le créer s'il n'existe pas).
+- Tester la connexion : `node integrations/qonto/fetch.js --start $(date +%Y-%m-%d) --end $(date +%Y-%m-%d)`. Si ça fonctionne, confirmer. Si erreur, afficher le message et demander de vérifier les identifiants.
 
 **Si non** : demander le nom de la banque principale (pour le libellé du compte 512).
 
@@ -66,14 +71,31 @@ Proposer les options :
 > Combien de **comptes Stripe** avez-vous ? (un seul / plusieurs comptes séparés / Stripe Connect)
 > Pour chaque compte, quel **nom** voulez-vous lui donner ? (ex: "Mon SaaS", "Ma Boutique")
 
-Configurer une entrée par compte dans `stripe_accounts` avec `id`, `name`, `env_key`. Expliquer :
-- "Définissez la variable d'environnement avec votre clé secrète (dashboard Stripe > **Developers > API keys**) :"
-  ```
-  export STRIPE_SECRET="sk_live_..."
-  ```
+Configurer une entrée par compte dans `stripe_accounts` avec `id`, `name`, `env_key`.
+
+Pour chaque compte, demander la clé API :
+
+> Pour connecter **[nom du compte]**, j'ai besoin de votre clé secrète Stripe.
+> Vous la trouverez dans le dashboard Stripe > **Developers > API keys** (commence par `sk_live_` ou `sk_test_`).
+>
+> Quelle est votre **Secret key** pour [nom du compte] ?
+
 - Pour Stripe Connect, demander aussi le `stripe_account_id` (`acct_xxx`) de chaque sous-compte.
+- Écrire les clés dans `.env` (une variable par compte : `STRIPE_SECRET_MELIES`, `STRIPE_SECRET_BEANVEST`, etc.).
+- Tester la connexion pour chaque compte : `node integrations/stripe/fetch.js --account <id> --start $(date +%Y-%m-%d) --end $(date +%Y-%m-%d)`. Confirmer ou demander de vérifier si erreur.
 
 **Si non** : laisser `stripe_accounts` vide (`[]`).
+
+### Fichier .env
+
+Les clés API sont stockées dans `.env` à la racine du projet (jamais dans `company.json`, jamais commitées). Vérifier que `.env` est dans `.gitignore`. Format :
+
+```
+QONTO_ID=votre-slug-organisation
+QONTO_API_SECRET=votre-cle-secrete
+STRIPE_SECRET_MELIES=sk_live_...
+STRIPE_SECRET_BEANVEST=sk_live_...
+```
 
 ## Étape 5 : Récapitulatif et génération
 
