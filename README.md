@@ -35,7 +35,21 @@ Les skills sont du Markdown. Ils fonctionnent avec tout agent ou outil capable d
 
 ## Quick Start
 
-Copiez ce message et envoyez-le à votre agent IA :
+### Via [agentskill.sh](https://agentskill.sh/skillsets/paperasse) (recommandé)
+
+Installez les skills toujours à jour via agentskill.sh :
+
+[![Install with agentskill.sh](https://img.shields.io/badge/Install_with-agentskill.sh-blue?style=flat)](https://agentskill.sh/skillsets/paperasse)
+
+```
+/learn skillset:paperasse
+```
+
+Les skills (notaire, comptable, controleur-fiscal, commissaire-aux-comptes) seront installés et mis à jour automatiquement.
+
+### Installation complète (avec scripts et connecteurs)
+
+Pour le workflow complet de clôture annuelle (scripts de génération FEC/PDF, connecteurs Qonto/Stripe), copiez ce message à votre agent :
 
 ```
 Installe tous les skills du repo github https://github.com/romainsimon/paperasse et lance le setup pour la gestion de toute ma paperasse
