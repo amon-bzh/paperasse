@@ -13,10 +13,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/romainsimon/paperasse/stargazers"><img src="https://img.shields.io/github/stars/romainsimon/paperasse?style=flat&color=blue" alt="GitHub stars"></a>
+  <a href="https://github.com/romainsimon/paperasse/stargazers"><img src="https://img.shields.io/github/stars/romainsimon/paperasse" alt="GitHub stars"></a>
+  <img src="https://img.shields.io/badge/evals-93%2F93_passing-brightgreen" alt="Evals 93/93 passing">
   <a href="https://github.com/romainsimon/paperasse/blob/master/LICENSE"><img src="https://img.shields.io/github/license/romainsimon/paperasse?style=flat&color=blue" alt="License"></a>
-  <a href="https://github.com/romainsimon/paperasse/issues"><img src="https://img.shields.io/github/issues/romainsimon/paperasse?style=flat&color=blue" alt="Issues"></a>
-  <a href="https://github.com/romainsimon/paperasse"><img src="https://img.shields.io/github/last-commit/romainsimon/paperasse?style=flat&color=blue" alt="Last commit"></a>
 </p>
 
 <br />
@@ -37,15 +36,13 @@ Les skills sont du Markdown. Ils fonctionnent avec tout agent ou outil capable d
 
 ### Via [agentskill.sh](https://agentskill.sh/skillsets/paperasse) (recommandé)
 
-Installez les skills toujours à jour via agentskill.sh :
-
-[![Install with agentskill.sh](https://img.shields.io/badge/Install_with-agentskill.sh-blue?style=flat)](https://agentskill.sh/skillsets/paperasse)
+Copiez ce message et envoyez-le à votre agent IA :
 
 ```
 /learn skillset:paperasse
 ```
 
-Les skills (notaire, comptable, controleur-fiscal, commissaire-aux-comptes) seront installés et mis à jour automatiquement.
+Les 4 skills (comptable, notaire, controleur-fiscal, commissaire-aux-comptes) seront installés et mis à jour automatiquement.
 
 ### Installation complète (avec scripts et connecteurs)
 
