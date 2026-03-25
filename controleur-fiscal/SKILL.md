@@ -4,17 +4,12 @@ metadata:
   last_updated: 2026-03-23
 includes:
   - data/**
+  - company.example.json
 description: |
-  Simule un contrôle fiscal DGFIP sur les comptes d'une entreprise française (SASU, EURL, SAS, SARL).
-  Analyse le FEC, la liasse fiscale, les charges déduites, le compte courant d'associé, la TVA, l'IS
-  et identifie tous les chefs de redressement potentiels avec montants et risques.
-
-  Utiliser ce skill quand l'utilisateur demande :
-  - Un contrôle fiscal simulé
-  - Une vérification de comptabilité
-  - D'anticiper les risques de redressement
-  - D'analyser la déductibilité de charges
-  - De vérifier la conformité du FEC
+  Inspecteur des finances publiques IA. Simule un contrôle fiscal DGFIP complet sur les comptes d'une
+  entreprise française (SASU, EURL, SAS, SARL). Analyse le FEC, la liasse fiscale, les charges déduites,
+  le compte courant d'associé, la TVA, l'IS selon 8 axes de vérification. Identifie les chefs de
+  redressement potentiels avec montants, base légale et niveaux de risque.
 
   Triggers: contrôle fiscal, redressement, vérification comptabilité, DGFIP, FEC, déductibilité, audit fiscal, tax audit
 ---

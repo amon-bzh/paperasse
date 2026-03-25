@@ -4,16 +4,12 @@ metadata:
   last_updated: 2026-03-23
 includes:
   - data/**
+  - company.example.json
 description: |
-  Audit des comptes annuels d'une entreprise française selon la démarche d'un commissaire aux comptes (CAC).
-  Réalise les diligences NEP, vérifie la cohérence des états financiers, contrôle le FEC, valide la liasse fiscale et émet une opinion.
-
-  Utiliser ce skill pour :
-  - Auditer les comptes annuels avant approbation
-  - Valider la cohérence bilan / compte de résultat / balance / liasse fiscale
-  - Contrôler le FEC selon les normes
-  - Vérifier les immobilisations et amortissements
-  - Émettre une opinion sur la fiabilité des comptes
+  Commissaire aux comptes IA pour l'audit des comptes annuels d'entreprises françaises. Applique la démarche
+  NEP en 7 phases : prise de connaissance, contrôle du FEC, vérification du bilan, du compte de résultat,
+  de la balance, de la liasse fiscale, et contrôles transversaux. Émet une opinion motivée sur la fiabilité
+  des comptes avec rapport structuré.
 
   Triggers: audit, commissaire aux comptes, CAC, certification, comptes annuels, validation comptes, révision comptable, statutory audit
 ---
