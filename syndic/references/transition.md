@@ -21,48 +21,72 @@ Syndic sortant : {{nom_cabinet}} (fin mandat : {{date_fin}})
 Candidat bénévole : {{nom_candidat}} (lot {{n}})
 AG prévue : {{date_ag}}
 
-PHASE 1 — PRÉPARATION (3-6 mois avant l'AG)
-- [ ] Vérifier date fin mandat + clause de non-renouvellement + préavis
-- [ ] Informer le conseil syndical du projet
+PHASE 1 — AUDIT ET PRÉPARATION (6 mois avant l'AG)
+- [ ] Récupérer et lire le contrat de syndic en cours
+- [ ] Noter la date de fin de mandat et le préavis de non-renouvellement
+- [ ] Demander les comptes au syndic actuel (trésorerie, impayés, contrats)
+- [ ] Inventorier les contrats fournisseurs en cours (échéances, coûts)
+- [ ] Évaluer la situation financière (impayés, fonds travaux, dettes)
+- [ ] Identifier les contentieux ou sinistres en cours
+- [ ] Informer le conseil syndical du projet de changement
+
+PHASE 2 — CONSULTATION DES COPROPRIÉTAIRES (3-4 mois avant l'AG)
+- [ ] Présenter le projet aux copropriétaires (courrier ou réunion informelle)
+- [ ] Expliquer les avantages : économie honoraires, transparence, réactivité
+- [ ] Présenter le candidat bénévole (lot, disponibilité, compétences)
+- [ ] Recueillir les questions et inquiétudes
+- [ ] Préparer les réponses aux objections courantes
+- [ ] Estimer le soutien (majorité art. 25 atteignable ?)
+
+PHASE 3 — PRÉPARATION JURIDIQUE (2-3 mois avant l'AG)
 - [ ] Confirmer que le candidat est bien copropriétaire (art. 17-1)
 - [ ] Candidat : souscrire assurance RC syndic bénévole
 - [ ] Rédiger le contrat de syndic bénévole (conforme décret 26 mars 2015)
-- [ ] Préparer le budget de transition (frais de compte, assurance RC, outils)
+- [ ] Préparer le budget de transition (frais compte, assurance, outils)
+- [ ] Utiliser le template : templates/contrat-syndic.md
 
-PHASE 2 — AG (21 jours avant → jour J)
-- [ ] Inscrire à l'ordre du jour : non-renouvellement syndic sortant (art. 25)
-- [ ] Inscrire à l'ordre du jour : élection syndic bénévole (art. 25, passerelle 25-1)
-- [ ] Inscrire à l'ordre du jour : approbation contrat de syndic
-- [ ] Inscrire à l'ordre du jour : mandats de signature bancaire
-- [ ] Joindre le projet de contrat de syndic à la convocation (art. 11)
-- [ ] Envoyer convocations LRAR (21 jours min avant AG)
-- [ ] Jour J : vote obtenu ? → noter voix pour/contre/abstention
-- [ ] Si art. 25 non atteint mais ≥ 1/3 des voix : second vote immédiat (art. 25-1)
-- [ ] Rédiger le PV d'AG avec résultats détaillés
+PHASE 4 — ASSEMBLÉE GÉNÉRALE
+- [ ] Inscrire résolution 1 : non-renouvellement syndic sortant (art. 25)
+- [ ] Inscrire résolution 2 : élection syndic bénévole (art. 25, passerelle 25-1)
+- [ ] Inscrire résolution 3 : approbation du contrat de syndic
+- [ ] Inscrire résolution 4 : désignation signataires du compte bancaire
+- [ ] Joindre le projet de contrat à la convocation (art. 11 décret 1967)
+- [ ] Envoyer convocations LRAR (21 jours min avant l'AG, art. 9-1)
+- [ ] Joindre : formulaire vote par correspondance + pouvoir/procuration
+- [ ] JOUR J : vote obtenu ? Noter voix pour / contre / abstention
+- [ ] Si art. 25 non atteint mais ≥ 1/3 : second vote immédiat à l'art. 24 (art. 25-1)
+- [ ] Rédiger le PV d'AG (signatures : président + secrétaire + scrutateurs)
+- [ ] Notifier le PV aux absents/opposants sous 1 mois (LRAR, art. 18 décret)
+      → Le délai de contestation de 2 mois court à compter de cette notification (art. 42)
 
-PHASE 3 — TRANSMISSION DES ARCHIVES (3 mois max, art. 18-2)
-- [ ] Notifier le syndic sortant de la fin de mandat
-- [ ] Réceptionner : situation de trésorerie (soldes, placements, rapprochement)
-- [ ] Réceptionner : comptabilité (grand livre, journal, balance, factures)
+PHASE 5 — TRANSMISSION DES ARCHIVES (3 mois max, art. 18-2)
+- [ ] Notifier officiellement au syndic sortant la fin de son mandat (LRAR)
+- [ ] Réceptionner : situation de trésorerie (soldes, placements, rapprochement bancaire)
+- [ ] Réceptionner : comptabilité (grand livre, journal, balance, factures en cours)
 - [ ] Réceptionner : état des impayés par copropriétaire
-- [ ] Réceptionner : documents admin (règlement, PV AG, carnet entretien, fiche synthétique)
-- [ ] Réceptionner : liste copropriétaires (noms, tantièmes, coordonnées)
-- [ ] Réceptionner : contrats en cours (assurance, maintenance, énergie) + échéanciers
-- [ ] Réceptionner : clés et codes (locaux, portail, digicode, plateformes)
+- [ ] Réceptionner : documents admin (règlement, tous les PV d'AG, carnet d'entretien, fiche synthétique)
+- [ ] Réceptionner : liste des copropriétaires (noms, lots, tantièmes, coordonnées)
+- [ ] Réceptionner : contrats en cours (assurance, maintenance, énergie) + échéanciers + préavis
+- [ ] Réceptionner : clés et codes (locaux techniques, portail, digicode, machinerie)
+- [ ] Réceptionner : accès plateformes (extranet, banque en ligne, RNC)
 - [ ] Réceptionner : dossiers contentieux et sinistres en cours
-- [ ] Réceptionner : accès banque (clôture ou transfert signataire)
-- [ ] Vérifier la concordance de la trésorerie (solde transmis = solde réel)
-- [ ] Si refus de transmission → mise en demeure LRAR → tribunal judiciaire (référé)
+- [ ] Réceptionner : compte bancaire (transfert fonds ou changement signataire)
+- [ ] VÉRIFIER : solde bancaire transmis = solde réel (relevé du jour)
+- [ ] Si refus ou retard de transmission :
+      → Mise en demeure LRAR
+      → Si pas de réponse sous 30 jours : saisine tribunal judiciaire (référé)
+      → Astreinte possible + responsabilité civile du syndic sortant
 
-PHASE 4 — MISE EN PLACE (dans le mois suivant la prise de fonction)
-- [ ] Ouvrir le compte bancaire séparé (art. 26-7 décret 1967)
-- [ ] Transférer les fonds de l'ancien compte
-- [ ] Informer tous les fournisseurs (nouveau contact + nouvelles coordonnées bancaires)
-- [ ] Informer les copropriétaires (coordonnées, modalités paiement)
-- [ ] Mettre à jour l'immatriculation RNC (2 mois max après l'AG)
-- [ ] Reprendre la comptabilité (rapprochement au jour du changement)
-- [ ] Mettre en place l'extranet copropriétaires
-- [ ] Notifier le PV d'AG aux absents/opposants
+PHASE 6 — MISE EN PLACE (dans le mois suivant la prise de fonction)
+- [ ] Ouvrir le compte bancaire séparé au nom du syndicat (art. 26-7 décret 1967)
+- [ ] Transférer les fonds depuis l'ancien compte
+- [ ] Informer tous les fournisseurs (nouveau contact, nouvelles coordonnées bancaires)
+- [ ] Informer les copropriétaires (coordonnées syndic, modalités de paiement)
+- [ ] Mettre à jour l'immatriculation RNC (dans les 2 mois, art. 55 loi 1965)
+      → https://www.registre-coproprietes.gouv.fr
+- [ ] Reprendre la comptabilité (rapprochement au jour du changement, vérifier concordance)
+- [ ] Mettre en place l'extranet copropriétaires (obligation ALUR)
+- [ ] Émettre le premier appel de fonds au nom du nouveau syndic
 
 TRANSITION TERMINÉE ✓
 ```

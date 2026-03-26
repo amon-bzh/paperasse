@@ -14,7 +14,7 @@
 
 <p align="center">
   <a href="https://github.com/romainsimon/paperasse/stargazers"><img src="https://img.shields.io/github/stars/romainsimon/paperasse" alt="GitHub stars"></a>
-  <img src="https://img.shields.io/badge/evals-93%2F93_passing-brightgreen" alt="Evals 93/93 passing">
+  <img src="https://img.shields.io/badge/evals-181%2F181_passing-brightgreen" alt="Evals 181/181 passing">
   <a href="https://github.com/romainsimon/paperasse/blob/master/LICENSE"><img src="https://img.shields.io/github/license/romainsimon/paperasse?style=flat&color=blue" alt="License"></a>
 </p>
 

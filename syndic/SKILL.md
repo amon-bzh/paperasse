@@ -153,19 +153,18 @@ Mutation — Lot {{n}} — Vendeur → Acquéreur
 
 ```
 Transition — {{copro.name}} — Syndic sortant : {{nom}}
-- [ ] Phase 1 : vérifier fin mandat, préavis, informer conseil syndical
-- [ ] Phase 1 : candidat copropriétaire confirmé, assurance RC souscrite
-- [ ] Phase 1 : contrat de syndic bénévole rédigé (décret 26 mars 2015)
-- [ ] Phase 2 : résolutions AG inscrites (non-renouvellement + élection, art. 25)
-- [ ] Phase 2 : contrat joint à la convocation (art. 11), LRAR 21 jours
-- [ ] Phase 2 : vote obtenu (passerelle art. 25-1 si nécessaire)
-- [ ] Phase 3 : archives transmises (7 catégories, 3 mois max, art. 18-2)
-- [ ] Phase 4 : compte bancaire séparé ouvert (art. 26-7)
-- [ ] Phase 4 : fournisseurs et copropriétaires informés
-- [ ] Phase 4 : RNC mis à jour (2 mois max)
+- [ ] Phase 1 AUDIT : récupérer comptes, inventorier contrats, évaluer situation
+- [ ] Phase 2 CONSULTATION : présenter aux copropriétaires, recueillir soutien
+- [ ] Phase 3 JURIDIQUE : candidat confirmé (art. 17-1), assurance RC, contrat rédigé
+- [ ] Phase 4 AG : résolutions inscrites (art. 25), contrat joint (art. 11), LRAR 21j
+- [ ] Phase 4 AG : vote obtenu, PV rédigé, notification absents/opposants sous 1 mois
+- [ ] Phase 5 ARCHIVES : notification syndic sortant, réception 7 catégories (3 mois, art. 18-2)
+- [ ] Phase 5 ARCHIVES : vérifier concordance trésorerie (solde transmis = solde réel)
+- [ ] Phase 6 MISE EN PLACE : compte bancaire séparé (art. 26-7), transfert fonds
+- [ ] Phase 6 MISE EN PLACE : fournisseurs + copropriétaires informés, RNC mis à jour (2 mois)
 ```
 
-Checklist complète avec détail de chaque étape : [references/transition.md](references/transition.md)
+Workflow complet (6 phases, 40+ étapes) : [references/transition.md](references/transition.md)
 
 ### Sinistre (dégât des eaux, incendie)
 
