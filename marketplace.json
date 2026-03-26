@@ -28,6 +28,12 @@
       "name": "Notaire",
       "path": "notaire/SKILL.md",
       "description": "Frais de notaire, successions, donations, SCI, PACS"
+    },
+    {
+      "slug": "syndic",
+      "name": "Syndic de Copropriété",
+      "path": "syndic/SKILL.md",
+      "description": "Gestion complète de copropriété, AG, appels de fonds, comptabilité, travaux, contentieux"
     }
   ],
   "integrations": ["qonto", "stripe"],
