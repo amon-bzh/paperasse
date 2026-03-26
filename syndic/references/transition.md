@@ -11,7 +11,63 @@ Le changement de syndic se décide en AG à la majorité de l'art. 25 (avec pass
 3. **Syndic professionnel → syndic coopératif** : le conseil syndical assure collectivement la gestion
 4. **Syndic bénévole/coopératif → syndic professionnel** : retour à un professionnel
 
-## Processus Complet
+## Checklist Complète : Transition Syndic Pro → Bénévole
+
+Copier et suivre cette checklist. Adapter les dates selon l'échéancier réel.
+
+```
+Transition syndic — {{copro.name}}
+Syndic sortant : {{nom_cabinet}} (fin mandat : {{date_fin}})
+Candidat bénévole : {{nom_candidat}} (lot {{n}})
+AG prévue : {{date_ag}}
+
+PHASE 1 — PRÉPARATION (3-6 mois avant l'AG)
+- [ ] Vérifier date fin mandat + clause de non-renouvellement + préavis
+- [ ] Informer le conseil syndical du projet
+- [ ] Confirmer que le candidat est bien copropriétaire (art. 17-1)
+- [ ] Candidat : souscrire assurance RC syndic bénévole
+- [ ] Rédiger le contrat de syndic bénévole (conforme décret 26 mars 2015)
+- [ ] Préparer le budget de transition (frais de compte, assurance RC, outils)
+
+PHASE 2 — AG (21 jours avant → jour J)
+- [ ] Inscrire à l'ordre du jour : non-renouvellement syndic sortant (art. 25)
+- [ ] Inscrire à l'ordre du jour : élection syndic bénévole (art. 25, passerelle 25-1)
+- [ ] Inscrire à l'ordre du jour : approbation contrat de syndic
+- [ ] Inscrire à l'ordre du jour : mandats de signature bancaire
+- [ ] Joindre le projet de contrat de syndic à la convocation (art. 11)
+- [ ] Envoyer convocations LRAR (21 jours min avant AG)
+- [ ] Jour J : vote obtenu ? → noter voix pour/contre/abstention
+- [ ] Si art. 25 non atteint mais ≥ 1/3 des voix : second vote immédiat (art. 25-1)
+- [ ] Rédiger le PV d'AG avec résultats détaillés
+
+PHASE 3 — TRANSMISSION DES ARCHIVES (3 mois max, art. 18-2)
+- [ ] Notifier le syndic sortant de la fin de mandat
+- [ ] Réceptionner : situation de trésorerie (soldes, placements, rapprochement)
+- [ ] Réceptionner : comptabilité (grand livre, journal, balance, factures)
+- [ ] Réceptionner : état des impayés par copropriétaire
+- [ ] Réceptionner : documents admin (règlement, PV AG, carnet entretien, fiche synthétique)
+- [ ] Réceptionner : liste copropriétaires (noms, tantièmes, coordonnées)
+- [ ] Réceptionner : contrats en cours (assurance, maintenance, énergie) + échéanciers
+- [ ] Réceptionner : clés et codes (locaux, portail, digicode, plateformes)
+- [ ] Réceptionner : dossiers contentieux et sinistres en cours
+- [ ] Réceptionner : accès banque (clôture ou transfert signataire)
+- [ ] Vérifier la concordance de la trésorerie (solde transmis = solde réel)
+- [ ] Si refus de transmission → mise en demeure LRAR → tribunal judiciaire (référé)
+
+PHASE 4 — MISE EN PLACE (dans le mois suivant la prise de fonction)
+- [ ] Ouvrir le compte bancaire séparé (art. 26-7 décret 1967)
+- [ ] Transférer les fonds de l'ancien compte
+- [ ] Informer tous les fournisseurs (nouveau contact + nouvelles coordonnées bancaires)
+- [ ] Informer les copropriétaires (coordonnées, modalités paiement)
+- [ ] Mettre à jour l'immatriculation RNC (2 mois max après l'AG)
+- [ ] Reprendre la comptabilité (rapprochement au jour du changement)
+- [ ] Mettre en place l'extranet copropriétaires
+- [ ] Notifier le PV d'AG aux absents/opposants
+
+TRANSITION TERMINÉE ✓
+```
+
+## Processus Détaillé
 
 ### Phase 1 : Préparation (3-6 mois avant l'AG)
 

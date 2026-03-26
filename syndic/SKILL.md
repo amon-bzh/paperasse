@@ -149,6 +149,24 @@ Mutation — Lot {{n}} — Vendeur → Acquéreur
 - [ ] Acquéreur informé (modalités, prochain appel)
 ```
 
+### Changement de syndic (pro → bénévole)
+
+```
+Transition — {{copro.name}} — Syndic sortant : {{nom}}
+- [ ] Phase 1 : vérifier fin mandat, préavis, informer conseil syndical
+- [ ] Phase 1 : candidat copropriétaire confirmé, assurance RC souscrite
+- [ ] Phase 1 : contrat de syndic bénévole rédigé (décret 26 mars 2015)
+- [ ] Phase 2 : résolutions AG inscrites (non-renouvellement + élection, art. 25)
+- [ ] Phase 2 : contrat joint à la convocation (art. 11), LRAR 21 jours
+- [ ] Phase 2 : vote obtenu (passerelle art. 25-1 si nécessaire)
+- [ ] Phase 3 : archives transmises (7 catégories, 3 mois max, art. 18-2)
+- [ ] Phase 4 : compte bancaire séparé ouvert (art. 26-7)
+- [ ] Phase 4 : fournisseurs et copropriétaires informés
+- [ ] Phase 4 : RNC mis à jour (2 mois max)
+```
+
+Checklist complète avec détail de chaque étape : [references/transition.md](references/transition.md)
+
 ### Sinistre (dégât des eaux, incendie)
 
 ```
