@@ -62,7 +62,10 @@ PHASE 2 — CONSULTATION DES COPROPRIÉTAIRES (3-4 mois avant l'AG)
       • "Et si le bénévole déménage ?" → nouveau vote en AG, retour pro possible
       • "Quelle responsabilité ?" → assurance RC syndic bénévole
       • "Et les contrats en cours ?" → continuent, juste changement d'interlocuteur
-- [ ] Compter les voix probables (majorité art. 25 = {{seuil}} tantièmes nécessaires)
+- [ ] Compter les voix probables
+      Art. 25 = majorité de TOUS les copropriétaires (présents ou non)
+      Seuil = tantièmes_total / 2 + 1 = {{tantiemes_total}} / 2 + 1 = {{seuil}} tantièmes
+      Si échec mais ≥ 1/3 obtenu ({{tantiemes_total / 3}}), passerelle art. 25-1
 
 ══════════════════════════════════════════════════════════════
 PHASE 3 — PRÉPARATION JURIDIQUE (2-3 mois avant l'AG)
