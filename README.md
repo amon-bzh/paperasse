@@ -14,7 +14,7 @@
 
 <p align="center">
   <a href="https://github.com/romainsimon/paperasse/stargazers"><img src="https://img.shields.io/github/stars/romainsimon/paperasse" alt="GitHub stars"></a>
-  <img src="https://img.shields.io/badge/evals-93%2F93_passing-brightgreen" alt="Evals 93/93 passing">
+  <img src="https://img.shields.io/badge/evals-203%2F203_passing-brightgreen" alt="Evals 203/203 passing">
   <a href="https://github.com/romainsimon/paperasse/blob/master/LICENSE"><img src="https://img.shields.io/github/license/romainsimon/paperasse?style=flat&color=blue" alt="License"></a>
 </p>
 
@@ -26,7 +26,7 @@
 
 <b>Paperasse est une collection de skills pour agents IA ([Claude Code](https://claude.com/product/claude-code), [Claude Cowork](https://claude.com/product/cowork), [Codex](https://openai.com/codex/), [Mistral Vibe](https://vibe.mistral.ai), [Cursor](https://cursor.com), [Windsurf](https://windsurf.com), [Cline](https://cline.bot), [Aider](https://aider.chat)) spécialisés dans la comptabilité, la fiscalité, le notariat et l'audit des entreprises françaises.</b>
 
-Chaque skill transforme votre agent en copilote expert d'un métier de la paperasse : comptabilité (PCG, TVA, IS, clôture annuelle, FEC, liasse fiscale), contrôle fiscal, audit CAC, et droit notarial (immobilier, succession, donation). Il connaît les textes (CGI, BOFiP, NEP), les formulaires, les échéances, et ne se trompe pas de case dans la liasse fiscale.
+Chaque skill transforme votre agent en copilote expert d'un métier de la paperasse : comptabilité (PCG, TVA, IS, clôture annuelle, FEC, liasse fiscale), contrôle fiscal, audit CAC, droit notarial (immobilier, succession, donation), et gestion de copropriété (AG, charges, travaux, impayés). Il connaît les textes (CGI, BOFiP, NEP, loi 1965), les formulaires, les échéances, et ne se trompe pas de case dans la liasse fiscale.
 
 Les skills sont du Markdown. Ils fonctionnent avec tout agent ou outil capable de lire des fichiers. Paperasse inclut aussi des connecteurs pour récupérer automatiquement vos transactions bancaires (Qonto) et paiements (Stripe).
 
@@ -59,7 +59,7 @@ L'agent va cloner le repo, installer les skills, et lancer le setup guidé qui v
 
 ---
 
-## Les 4 skills
+## Les 5 skills
 
 | Skill | Rôle | Ce qu'il fait |
 |-------|------|---------------|
@@ -67,6 +67,7 @@ L'agent va cloner le repo, installer les skills, et lancer le setup guidé qui v
 | **`controleur-fiscal`** | Contrôleur Fiscal | Simulation de contrôle DGFIP sur 8 axes, chefs de redressement avec base légale et montants |
 | **`commissaire-aux-comptes`** | Commissaire aux Comptes | Audit NEP en 7 phases, validation croisée bilan/CR/liasse, opinion motivée |
 | **`notaire`** | Notaire | Frais de notaire, plus-value immobilière, successions, donations, SCI, PACS, diagnostics, conseil patrimonial |
+| **`syndic`** | Syndic de Copropriété | Gestion d'un parc de copropriétés : AG, appels de fonds, comptabilité (décret 2005), travaux, fournisseurs, impayés, transition de syndic |
 
 ---
 
@@ -86,6 +87,12 @@ L'agent va cloner le repo, installer les skills, et lancer le setup guidé qui v
 > Ma mère est décédée, nous sommes 3 enfants. Calcule les droits de succession.
 
 > Rédige les statuts d'une SCI familiale pour gérer un immeuble locatif.
+
+> Prépare la convocation de l'AG annuelle pour ma copropriété.
+
+> Donne-moi un tableau de bord de toutes mes copropriétés.
+
+> Le copropriétaire du lot 7 n'a pas payé depuis 6 mois. Que faire ?
 ```
 
 ---
