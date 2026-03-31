@@ -14,7 +14,7 @@
 
 <p align="center">
   <a href="https://github.com/romainsimon/paperasse/stargazers"><img src="https://img.shields.io/github/stars/romainsimon/paperasse" alt="GitHub stars"></a>
-  <img src="https://img.shields.io/badge/evals-203%2F203_passing-brightgreen" alt="Evals 203/203 passing">
+  <img src="https://img.shields.io/badge/evals-89%25_with_skill_%7C_78%25_without_%7C_%2B11%25_delta-brightgreen" alt="Evals: 89% with skill | 78% without | +11% delta">
   <a href="https://github.com/romainsimon/paperasse/blob/master/LICENSE"><img src="https://img.shields.io/github/license/romainsimon/paperasse?style=flat&color=blue" alt="License"></a>
 </p>
 
@@ -176,6 +176,36 @@ Les skills sont du Markdown. Ils marchent partout où un agent peut lire des fic
 | **Mistral Vibe** | `~/.vibe/skills/` |
 | **Cline** | `~/.cline/skills/` |
 | **Aider** | `~/.aider/skills/` |
+
+---
+
+## Evals
+
+Chaque skill est évalué automatiquement avec et sans le SKILL.md pour mesurer sa valeur ajoutée. Le runner utilise `claude --bare` en isolation, un grading LLM-as-judge, et une exécution parallèle (~20 min pour la suite complète).
+
+```bash
+# Lancer les evals
+uv run --project evals python evals/run_evals.py
+
+# Un seul skill
+uv run --project evals python evals/run_evals.py --skill notaire
+
+# Voir les résultats dans le navigateur
+python evals/generate_review.py evals-workspace/iteration-xxx/
+```
+
+**Derniers résultats** (claude-sonnet-4-6, grading haiku) :
+
+| Skill | With Skill | Without Skill | Delta |
+|-------|-----------|--------------|-------|
+| commissaire-aux-comptes | 100% | 75% | **+25%** |
+| notaire | 96% | 92% | +4% |
+| controleur-fiscal | 91% | 87% | +4% |
+| comptable | 89% | 85% | +4% |
+| syndic | 83% | 68% | **+16%** |
+| **Aggregate** | **89%** | **78%** | **+11%** |
+
+Le format `evals.json` est compatible avec le [framework officiel anthropics/skills](https://github.com/anthropics/skills/tree/main/skills/skill-creator).
 
 ---
 
