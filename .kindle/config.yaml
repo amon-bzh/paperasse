@@ -1,0 +1,36 @@
+# ============================================================
+# config.yaml — Paramètres de l'eBook
+# ============================================================
+
+# ── Métadonnées ──────────────────────────────────────────────
+title: "Dépôt Github Paperasse"
+author: "Romain Simon"
+language: "fr"                  # Code ISO 639-1 (fr, en, de…)
+description: "Description courte de l'eBook"
+
+# ── Fichier de sortie ────────────────────────────────────────
+# Le nom du fichier généré (sans extension)
+output_filename: "paperasse"        # → output/ebook.epub
+
+# ── Format EPUB ──────────────────────────────────────────────
+epub_version: 3                 # 2 ou 3 (3 recommandé, supporté par tous les Kindle récents)
+
+# ── Table des matières ───────────────────────────────────────
+toc: true                       # true / false
+toc_depth: 2                    # Niveaux de heading inclus dans la TOC (1 à 4)
+
+# ── Coloration syntaxique ────────────────────────────────────
+# Styles disponibles : pygments, tango, espresso, zenburn, kate,
+#                      monochrome, breezedark, haddock
+# → "monochrome" est le plus lisible sur e-ink Kindle
+highlight_style: monochrome
+
+# ── Envoi Kindle ─────────────────────────────────────────────
+# Adresse @kindle.com de ton appareil
+# Paramètres > Mon compte > Appareils et contenu Kindle
+kindle_email: "antoine.monconduit_1W6jxc@kindle.com"
+
+# ── Notes de build ───────────────────────────────────────────
+# Ces champs sont informatifs, non utilisés par build.sh
+version: "1.0"
+date: "2025-01-01"

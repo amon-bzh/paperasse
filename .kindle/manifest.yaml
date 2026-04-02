@@ -1,0 +1,24 @@
+# ============================================================
+# manifest.yaml — Liste ordonnée des fichiers Markdown
+#
+# Chemins RELATIFS à la racine du dépôt (pas à .kindle/).
+# L'ordre ici = ordre dans l'eBook.
+# Commente une ligne avec # pour exclure temporairement un fichier.
+# ============================================================
+
+files:
+  # ── Introduction / fichier racine ──────────────────────────
+  - .kindle/book.md               # Toujours en premier : intro, contexte
+
+  # ── Chapitres ───────────────────────────────────────────────
+  # Remplace ces exemples par tes vrais fichiers
+  - README.md
+  # - docs/chapitre-01.md
+  # - docs/chapitre-02.md
+  # - agents/mon-agent.md
+  # - research/findings.md
+  # - skills/skill-name.md
+
+  # ── Annexes (optionnel) ─────────────────────────────────────
+  # - docs/annexes.md
+  # - CHANGELOG.md

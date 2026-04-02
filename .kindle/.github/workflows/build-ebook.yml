@@ -1,0 +1,152 @@
+name: Build Kindle eBook
+
+on:
+  # ── Déclenchement manuel ──────────────────────────────────
+  workflow_dispatch:
+    inputs:
+      format:
+        description: "Format de sortie"
+        required: true
+        default: "epub"
+        type: choice
+        options:
+          - epub
+          - epub+pdf
+
+  # ── Déclenchement sur tag kindle-* ───────────────────────
+  push:
+    tags:
+      - "kindle-*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── Checkout ─────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # ── Installation Pandoc ───────────────────────────────
+      - name: Install Pandoc
+        run: |
+          PANDOC_VERSION="3.1.11"
+          wget -q "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-1-amd64.deb"
+          sudo dpkg -i "pandoc-${PANDOC_VERSION}-1-amd64.deb"
+          pandoc --version
+
+      # ── Installation LaTeX (si PDF demandé) ───────────────
+      - name: Install LaTeX (PDF only)
+        if: >
+          github.event_name == 'push' ||
+          github.event.inputs.format == 'epub+pdf'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y texlive-xetex texlive-fonts-recommended
+
+      # ── Build EPUB ────────────────────────────────────────
+      - name: Build EPUB
+        run: |
+          chmod +x .kindle/build.sh
+          ./.kindle/build.sh
+
+      # ── Build PDF (optionnel) ─────────────────────────────
+      - name: Build PDF
+        if: >
+          github.event_name == 'push' ||
+          github.event.inputs.format == 'epub+pdf'
+        run: |
+          ./.kindle/build.sh --pdf
+
+      # ── Lecture du nom de fichier depuis config.yaml ──────
+      - name: Read output filename
+        id: config
+        run: |
+          STEM=$(python3 - .kindle/config.yaml output_filename <<'EOF'
+          import sys, re
+          path, key = sys.argv[1], sys.argv[2]
+          with open(path) as f:
+              for line in f:
+                  m = re.match(rf'^{re.escape(key)}:\s*"?([^"#\n]+)"?\s*$', line)
+                  if m:
+                      print(m.group(1).strip())
+                      break
+          EOF
+          )
+          echo "stem=$STEM" >> "$GITHUB_OUTPUT"
+
+      # ── Upload artefact (workflow_dispatch) ───────────────
+      - name: Upload EPUB artifact
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ebook-epub
+          path: .kindle/output/${{ steps.config.outputs.stem }}.epub
+          retention-days: 30
+
+      - name: Upload PDF artifact
+        if: >
+          github.event_name == 'workflow_dispatch' &&
+          github.event.inputs.format == 'epub+pdf'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ebook-pdf
+          path: .kindle/output/${{ steps.config.outputs.stem }}.pdf
+          retention-days: 30
+
+      # ── Release Asset (push tag) ──────────────────────────
+      - name: Create GitHub Release with EPUB
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            .kindle/output/${{ steps.config.outputs.stem }}.epub
+            .kindle/output/${{ steps.config.outputs.stem }}.pdf
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # ── Envoi Kindle par email (optionnel) ────────────────
+      # Décommente et configure KINDLE_EMAIL, GMAIL_USER, GMAIL_APP_PASSWORD
+      # dans Settings → Secrets and variables → Actions
+      #
+      # - name: Send to Kindle
+      #   if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+      #   run: |
+      #     sudo apt-get install -y msmtp
+      #     cat > ~/.msmtprc << EOF
+      #     defaults
+      #     auth on
+      #     tls on
+      #     tls_trust_file /etc/ssl/certs/ca-certificates.crt
+      #     account gmail
+      #     host smtp.gmail.com
+      #     port 587
+      #     from ${{ secrets.GMAIL_USER }}
+      #     user ${{ secrets.GMAIL_USER }}
+      #     password ${{ secrets.GMAIL_APP_PASSWORD }}
+      #     account default : gmail
+      #     EOF
+      #     chmod 600 ~/.msmtprc
+      #     STEM="${{ steps.config.outputs.stem }}"
+      #     EPUB=".kindle/output/${STEM}.epub"
+      #     {
+      #       echo "To: ${{ secrets.KINDLE_EMAIL }}"
+      #       echo "Subject: ${STEM}"
+      #       echo "MIME-Version: 1.0"
+      #       echo 'Content-Type: multipart/mixed; boundary="BOUNDARY"'
+      #       echo ""
+      #       echo "--BOUNDARY"
+      #       echo "Content-Type: text/plain"
+      #       echo ""
+      #       echo "Envoyé par kindle-kit (GitHub Actions)"
+      #       echo "--BOUNDARY"
+      #       echo "Content-Type: application/epub+zip"
+      #       echo "Content-Disposition: attachment; filename=\"${STEM}.epub\""
+      #       echo "Content-Transfer-Encoding: base64"
+      #       echo ""
+      #       base64 "$EPUB"
+      #       echo "--BOUNDARY--"
+      #     } | msmtp "${{ secrets.KINDLE_EMAIL }}"
