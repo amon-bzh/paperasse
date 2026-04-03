@@ -1,0 +1,155 @@
+name: Build Kindle eBook
+
+# ── Déclencheurs ──────────────────────────────────────────────
+# - Tag kindle-* : build complet (epub+pdf) + Release Asset + envoi Kindle
+# - workflow_dispatch : build manuel avec choix du format
+
+on:
+  push:
+    tags:
+      - "kindle-*"
+  workflow_dispatch:
+    inputs:
+      format:
+        description: "Format de sortie"
+        required: true
+        default: "epub"
+        type: choice
+        options:
+          - epub
+          - epub+pdf
+          - epub+html
+          - epub+pdf+html
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+    steps:
+      # ── Checkout ───────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # ── Pandoc (version figée pour reproductibilité) ───────
+      - name: Install Pandoc
+        uses: r-lib/actions/setup-pandoc@v2
+        with:
+          pandoc-version: '3.1.11'
+
+      # ── Build EPUB (toujours) ──────────────────────────────
+      - name: Build EPUB
+        run: |
+          chmod +x .kindle/build.sh
+          ./.kindle/build.sh
+
+      # ── Build PDF (sur tag ou si format contient "pdf") ────
+      - name: Install LaTeX for PDF
+        if: >
+          github.event_name == 'push' ||
+          contains(github.event.inputs.format, 'pdf')
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y texlive-xetex texlive-fonts-recommended
+
+      - name: Build PDF
+        if: >
+          github.event_name == 'push' ||
+          contains(github.event.inputs.format, 'pdf')
+        run: ./.kindle/build.sh --pdf
+
+      # ── Build HTML ─────────────────────────────────────────
+      - name: Build HTML
+        if: contains(github.event.inputs.format, 'html')
+        run: ./.kindle/build.sh --html
+
+      # ── Lecture du nom de fichier depuis config.yaml ───────
+      - name: Read output filename
+        id: config
+        run: |
+          STEM=$(python3 - .kindle/config.yaml output_filename <<'EOF'
+          import sys, re
+          path, key = sys.argv[1], sys.argv[2]
+          with open(path) as f:
+              for line in f:
+                  m = re.match(rf'^{re.escape(key)}:\s*"?([^"#\n]+)"?\s*$', line)
+                  if m:
+                      print(m.group(1).strip())
+                      break
+          EOF
+          )
+          echo "stem=$STEM" >> "$GITHUB_OUTPUT"
+
+      # ── Upload artefacts (workflow_dispatch) ───────────────
+      - name: Upload EPUB artifact
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ebook-epub
+          path: .kindle/output/${{ steps.config.outputs.stem }}.epub
+          retention-days: 30
+
+      - name: Upload PDF artifact
+        if: >
+          github.event_name == 'workflow_dispatch' &&
+          contains(github.event.inputs.format, 'pdf')
+        uses: actions/upload-artifact@v4
+        with:
+          name: ebook-pdf
+          path: .kindle/output/${{ steps.config.outputs.stem }}.pdf
+          retention-days: 30
+
+      - name: Upload HTML artifact
+        if: >
+          github.event_name == 'workflow_dispatch' &&
+          contains(github.event.inputs.format, 'html')
+        uses: actions/upload-artifact@v4
+        with:
+          name: ebook-html
+          path: .kindle/output/${{ steps.config.outputs.stem }}.html
+          retention-days: 30
+
+      # ── Release Asset (push tag kindle-*) ──────────────────
+      - name: Create GitHub Release with assets
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            .kindle/output/${{ steps.config.outputs.stem }}.epub
+            .kindle/output/${{ steps.config.outputs.stem }}.pdf
+          generate_release_notes: true
+          if-no-files-found: warn
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # ── Envoi Kindle par email (push tag kindle-*) ─────────
+      # Secrets à configurer : Settings → Secrets and variables → Actions
+      #
+      #   SMTP_SERVER    : serveur SMTP           ex: smtp.gmail.com
+      #   SMTP_PORT      : port SMTP              ex: 587
+      #   SMTP_USERNAME  : email expéditeur       ex: moi@gmail.com
+      #   SMTP_PASSWORD  : mot de passe d'app     https://myaccount.google.com/apppasswords
+      #   KINDLE_EMAIL   : adresse @kindle.com    ex: moi@kindle.com
+      #
+      # Côté Amazon : Compte → Contenu et appareils → Paramètres → Documents personnels
+      # → ajouter SMTP_USERNAME comme expéditeur autorisé
+      #
+      # Si les secrets ne sont pas configurés, ce step échoue silencieusement
+      # (continue-on-error: true) sans bloquer la Release.
+      - name: Send to Kindle
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+        continue-on-error: true
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.SMTP_SERVER }}
+          server_port: ${{ secrets.SMTP_PORT }}
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: ${{ steps.config.outputs.stem }}
+          body: "eBook généré par kindle-kit — ${{ github.ref_name }} (${{ runner.name }})"
+          to: ${{ secrets.KINDLE_EMAIL }}
+          from: "GitHub Actions <${{ secrets.SMTP_USERNAME }}>"
+          attachments: .kindle/output/${{ steps.config.outputs.stem }}.epub
