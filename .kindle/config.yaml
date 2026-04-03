@@ -3,14 +3,14 @@
 # ============================================================
 
 # ── Métadonnées ──────────────────────────────────────────────
-title: "Mon eBook"
-author: "Antoine"
+title: ""Dépôt Github Paperasse""
+author: ""Romain Simon""
 language: "fr"                  # Code ISO 639-1 (fr, en, de…)
-description: "Description courte de l'eBook"
+description: "Sélection de skills et d'agents de Paperasse"
 
 # ── Fichier de sortie ────────────────────────────────────────
 # Le nom du fichier généré (sans extension)
-output_filename: "ebook"        # → output/ebook.epub
+output_filename: "paperasse"        # → output/ebook.epub
 
 # ── Identifiant unique de l'eBook ────────────────────────────
 # Généré automatiquement au premier build, ne pas modifier ensuite.
@@ -19,14 +19,14 @@ output_filename: "ebook"        # → output/ebook.epub
 uuid: "c8a237d7-e42b-4e8f-b9f9-ff8716b0c2dd"
 
 # ── Options de mise en forme ──────────────────────────────────
-number_chapters: false      # true → numérotation automatique des titres (1., 1.1., etc.)
+number_chapters: true      # true → numérotation automatique des titres (1., 1.1., etc.)
 
 # ── Format EPUB ──────────────────────────────────────────────
 epub_version: 3                 # 2 ou 3 (3 recommandé, supporté par tous les Kindle récents)
 
 # ── Table des matières ───────────────────────────────────────
 toc: true                       # true / false
-toc_depth: 3                    # Niveaux de heading inclus dans la TOC (1 à 4)
+toc_depth: 2                    # Niveaux de heading inclus dans la TOC (1 à 4)
 
 # ── Coloration syntaxique ────────────────────────────────────
 # Styles disponibles : pygments, tango, espresso, zenburn, kate,
@@ -37,9 +37,9 @@ highlight_style: monochrome
 # ── Envoi Kindle ─────────────────────────────────────────────
 # Adresse @kindle.com de ton appareil
 # Paramètres > Mon compte > Appareils et contenu Kindle
-kindle_email: "ton-kindle@kindle.com"
+kindle_email: "antoine.monconduit_1W6jxc@kindle.com"
 
 # ── Notes de build ───────────────────────────────────────────
 # Ces champs sont informatifs, non utilisés par build.sh
 version: "1.0"
-date: "2025-01-01"
+date: "2026-04-03"
