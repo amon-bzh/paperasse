@@ -23,16 +23,23 @@ success() { echo -e "${GREEN}[OK]${NC}    $*"; }
 warn()    { echo -e "${YELLOW}[WARN]${NC}  $*"; }
 error()   { echo -e "${RED}[ERROR]${NC} $*" >&2; exit 1; }
 
+# ── Modules lib/ ─────────────────────────────────────────────
+source "$SCRIPT_DIR/lib/uuid.sh"
+source "$SCRIPT_DIR/lib/cover.sh"
+
 # ── Options ─────────────────────────────────────────────────
 BUILD_PDF=false
+BUILD_HTML=false
 SEND_TO_KINDLE=false
 for arg in "$@"; do
   case $arg in
     --pdf)  BUILD_PDF=true ;;
+    --html) BUILD_HTML=true ;;
     --send) SEND_TO_KINDLE=true ;;
     --help)
-      echo "Usage: $0 [--pdf] [--send]"
+      echo "Usage: $0 [--pdf] [--html] [--send]"
       echo "  --pdf   Génère aussi un PDF"
+      echo "  --html  Génère aussi un fichier HTML standalone"
       echo "  --send  Envoie l'EPUB à ton Kindle (configure kindle_email dans config.yaml)"
       exit 0 ;;
   esac
@@ -70,9 +77,20 @@ TOC_DEPTH=$(read_yaml "toc_depth")
 HIGHLIGHT=$(read_yaml "highlight_style")
 OUTPUT_STEM=$(read_yaml "output_filename")
 KINDLE_EMAIL=$(read_yaml "kindle_email")
+NUMBER_CHAPTERS=$(read_yaml "number_chapters" || echo "false")
 
 OUTPUT_EPUB="$OUTPUT_DIR/${OUTPUT_STEM}.epub"
 OUTPUT_PDF="$OUTPUT_DIR/${OUTPUT_STEM}.pdf"
+OUTPUT_HTML="$OUTPUT_DIR/${OUTPUT_STEM}.html"
+
+# ── UUID ──────────────────────────────────────────────────────
+ensure_uuid "$CONFIG"
+
+# ── Couverture ────────────────────────────────────────────────
+REPO_NAME=$(basename "$REPO_ROOT")
+BUILD_TIMESTAMP=$(date '+%d/%m/%Y %H:%M')
+COVER="$SCRIPT_DIR/cover.png"
+generate_cover "$COVER" "$TITLE" "$AUTHOR" "$REPO_NAME" "$BUILD_TIMESTAMP"
 
 # ── Lecture du manifest.yaml ─────────────────────────────────
 info "Lecture du manifest..."
@@ -111,15 +129,18 @@ PANDOC_ARGS=(
   --metadata "title=$TITLE"
   --metadata "author=$AUTHOR"
   --metadata "lang=$LANG"
+  --metadata "identifier=urn:uuid:$UUID"
   --highlight-style "${HIGHLIGHT:-pygments}"
-  --epub-chapter-level 2
+  --split-level=1
 )
 
 # Table des matières
 [[ "$TOC" == "true" ]] && PANDOC_ARGS+=(--toc --toc-depth="${TOC_DEPTH:-3}")
 
+# Numérotation des chapitres
+[[ "$NUMBER_CHAPTERS" == "true" ]] && PANDOC_ARGS+=(--number-sections)
+
 # Image de couverture (optionnelle)
-COVER="$SCRIPT_DIR/cover.png"
 [[ -f "$COVER" ]] && PANDOC_ARGS+=(--epub-cover-image="$COVER")
 
 # Fichier de métadonnées (optionnel)
@@ -148,6 +169,23 @@ if [[ "$BUILD_PDF" == true ]]; then
   else
     warn "xelatex/lualatex non trouvé, PDF ignoré. Installe MacTeX si besoin."
   fi
+fi
+
+# ── Construction HTML standalone (optionnel) ─────────────────
+if [[ "$BUILD_HTML" == true ]]; then
+  info "Génération du HTML..."
+  pandoc \
+    --from markdown+smart+pipe_tables+fenced_code_blocks \
+    --to html5 \
+    --standalone \
+    --embed-resources \
+    --output "$OUTPUT_HTML" \
+    --css "$CSS" \
+    --metadata "title=$TITLE" \
+    --metadata "author=$AUTHOR" \
+    --highlight-style "${HIGHLIGHT:-pygments}" \
+    "${INPUT_FILES[@]}"
+  success "HTML généré : $OUTPUT_HTML"
 fi
 
 # ── Envoi Kindle par email ───────────────────────────────────
@@ -194,4 +232,5 @@ echo -e "${GREEN}║  Build terminé avec succès               ║${NC}"
 echo -e "${GREEN}╚══════════════════════════════════════════╝${NC}"
 echo -e "  EPUB : $OUTPUT_EPUB"
 [[ "$BUILD_PDF" == true && -f "$OUTPUT_PDF" ]] && echo -e "  PDF  : $OUTPUT_PDF"
+[[ "$BUILD_HTML" == true && -f "$OUTPUT_HTML" ]] && echo -e "  HTML : $OUTPUT_HTML"
 echo ""

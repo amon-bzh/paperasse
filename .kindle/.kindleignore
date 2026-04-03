@@ -1,0 +1,10 @@
+# .kindleignore — Fichiers exclus du mode auto-discover de manifest.sh
+# Syntaxe : un pattern glob par ligne (relatif à la racine du dépôt)
+# Les commentaires (#) et lignes vides sont ignorés.
+# .kindle/ et output/ sont toujours exclus, inutile de les lister ici.
+
+# Exemples :
+# CHANGELOG.md
+# node_modules/**
+# docs/draft-*.md
+# **/TODO.md
