@@ -19,7 +19,7 @@ output_filename: "paperasse"        # → output/ebook.epub
 uuid: "c8a237d7-e42b-4e8f-b9f9-ff8716b0c2dd"
 
 # ── Options de mise en forme ──────────────────────────────────
-number_chapters: true      # true → numérotation automatique des titres (1., 1.1., etc.)
+number_chapters: false      # true → numérotation automatique des titres (1., 1.1., etc.)
 
 # ── Format EPUB ──────────────────────────────────────────────
 epub_version: 3                 # 2 ou 3 (3 recommandé, supporté par tous les Kindle récents)
