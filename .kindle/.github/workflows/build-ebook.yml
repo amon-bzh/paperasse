@@ -75,7 +75,7 @@ jobs:
           path, key = sys.argv[1], sys.argv[2]
           with open(path) as f:
               for line in f:
-                  m = re.match(rf'^{re.escape(key)}:\s*"?([^"#\n]+)"?\s*$', line)
+                  m = re.match(rf'^{re.escape(key)}:\s*"?([^"#\n]+)"?\s*(#.*)?$', line)
                   if m:
                       print(m.group(1).strip())
                       break
