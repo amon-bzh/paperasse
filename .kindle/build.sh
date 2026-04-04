@@ -130,7 +130,7 @@ PANDOC_ARGS=(
   --metadata "author=$AUTHOR"
   --metadata "lang=$LANG"
   --metadata "identifier=urn:uuid:$UUID"
-  --highlight-style "${HIGHLIGHT:-pygments}"
+  --syntax-highlighting "${HIGHLIGHT:-pygments}"
   --split-level=1
 )
 
@@ -161,7 +161,7 @@ if [[ "$BUILD_PDF" == true ]]; then
       --to pdf \
       --pdf-engine="$PDF_ENGINE" \
       --output "$OUTPUT_PDF" \
-      --highlight-style "${HIGHLIGHT:-pygments}" \
+      --syntax-highlighting "${HIGHLIGHT:-pygments}" \
       --metadata "title=$TITLE" \
       --metadata "author=$AUTHOR" \
       "${INPUT_FILES[@]}"
@@ -183,7 +183,7 @@ if [[ "$BUILD_HTML" == true ]]; then
     --css "$CSS" \
     --metadata "title=$TITLE" \
     --metadata "author=$AUTHOR" \
-    --highlight-style "${HIGHLIGHT:-pygments}" \
+    --syntax-highlighting "${HIGHLIGHT:-pygments}" \
     "${INPUT_FILES[@]}"
   success "HTML généré : $OUTPUT_HTML"
 fi
@@ -199,7 +199,7 @@ if [[ "$SEND_TO_KINDLE" == true ]]; then
   info "Envoi à $KINDLE_EMAIL..."
   FILENAME=$(basename "$OUTPUT_EPUB")
 
-  # Envoi via msmtp (ou sendmail en fallback)
+  # Envoi via msmtp (ou osascript/Mail.app sur macOS en fallback)
   if command -v msmtp &>/dev/null; then
     {
       echo "To: $KINDLE_EMAIL"
@@ -220,6 +220,21 @@ if [[ "$SEND_TO_KINDLE" == true ]]; then
       echo "--BOUNDARY--"
     } | msmtp "$KINDLE_EMAIL"
     success "Envoyé à $KINDLE_EMAIL"
+  elif command -v osascript &>/dev/null; then
+    info "msmtp absent — envoi via Mail.app (osascript)..."
+    osascript <<APPLESCRIPT
+tell application "Mail"
+    set theEpub to POSIX file "$OUTPUT_EPUB"
+    set theMsg to make new outgoing message with properties ¬
+        {subject:"$TITLE", visible:false}
+    tell theMsg
+        make new to recipient with properties {address:"$KINDLE_EMAIL"}
+        make new attachment with properties {file name:theEpub}
+    end tell
+    send theMsg
+end tell
+APPLESCRIPT
+    success "Envoyé à $KINDLE_EMAIL via Mail.app"
   else
     warn "Envoi manuel : copie $OUTPUT_EPUB dans l'app Kindle ou envoie-le à $KINDLE_EMAIL"
   fi
