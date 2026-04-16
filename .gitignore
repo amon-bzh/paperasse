@@ -9,3 +9,5 @@ __pycache__/
 evals-workspace/
 evals/.venv/
 .kindle/output/
+.claude/
+.remember/
